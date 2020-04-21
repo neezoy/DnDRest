@@ -56,7 +56,7 @@ public class CharacterService {
                 character +" to character: "+ character;
 
         //response is output in this case
-        return Response.status(200).entity(response).build();6
+        return Response.status(200).entity(response).build();
     }
 
 
