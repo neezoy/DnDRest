@@ -4,12 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("character")
 public class CharacterService {
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     public String getCharacter(@PathParam("id") String id){
 
