@@ -604,4 +604,97 @@ public class DAO implements IDAO {
             throw p;
         }
     }
+    ArrayList<IUserDTO> getAllUsers() throws SQLException{
+        ArrayList<IUserDTO> users = new ArrayList<IUserDTO>();
+        try {
+
+            String query = "SELECT * FROM cdio.User";
+            PreparedStatement statement = c.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            IUserDTO user;
+            while (result.next()) {
+                user = new UserDTO();
+                user.setID(result.getInt("UserID"));
+                user.setID(userid);
+                user.setName(result.getString("Username"));
+                user.setPassword(result.getString("Password"));
+                user.setRole(result.getInt("Roles"));
+                users.add(user);
+            }
+
+        } catch (SQLException p) {
+        throw p;
+        }
+        return users;
+    }
+
+    ArrayList<ICharacterDTO> getAllCharacters() throws SQLException{
+        ArrayList<ICharacterDTO> characters = new ArrayList<ICharacterDTO>();
+        try {
+
+            String query = "SELECT * FROM cdio.character";
+            PreparedStatement statement = c.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            ICharacterDTO character;
+            while (result.next()) {
+                character = new CharacterDTO();
+                character.setID(result.getInt("CharacterID"));
+                character.setName(result.getString("CName"));
+                character.setLocation(result.getString("Location"));
+                character.setStrength(result.getInt("Strength"));
+                character.setBonus(result.getInt("BonusCapacity"));
+                characters.add(character);
+            }
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        return characters;
+
+    }
+
+    ArrayList<IItemDTO> getAllItems() throws SQLException{
+        ArrayList<IItemDTO> items = new ArrayList<IItemDTO>();
+        try {
+
+            String query = "SELECT * FROM cdio.item";
+            PreparedStatement statement = c.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            IItemDTO items;
+            while (result.next()) {
+                item = new ItemDTO();
+                item.setID(result.getInt("ItemID"));
+                item.setName(result.getString("ItemName"));
+                item.setWeight(result.getDouble("Weight"));
+                item.setDescription(result.getString("Description"));
+                items.add(item);
+            }
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        return items;
+    }
+
+    ArrayList<IGroupDTO> getAllGroups() throws SQLException{
+        ArrayList<IGroupDTO> groups = new ArrayList<IGroupDTO>();
+        try {
+
+            String query = "SELECT * FROM cdio.group";
+            PreparedStatement statement = c.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            IGroupDTO group;
+            while (result.next()) {
+                group = new GroupDTO();
+                group.setID(result.getInt("GroupID"));
+                group.setName(result.getString("GroupName"));
+                group.setDescription(result.getString("Description"));
+                groups.add(group);
+            }
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        return groups;
+    }
 }

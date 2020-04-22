@@ -74,4 +74,12 @@ public interface IDAO {
     void overwriteGroup(GroupDTO group) throws SQLException;
 
     void deleteGroup(int groupid) throws SQLException;
+
+    ArrayList<IUserDTO> getAllUsers() throws SQLException;
+
+    ArrayList<ICharacterDTO> getAllCharacters() throws SQLException;
+
+    ArrayList<IItemDTO> getAllItems() throws SQLException;
+
+    ArrayList<IGroupDTO> getAllGroups() throws SQLException;
 }
