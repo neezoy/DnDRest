@@ -20,6 +20,8 @@ public class CharacterService {
         String json = ow.writeValueAsString(object);
 
          */
+
+
         return "Your character is: " + id;
 
     }
