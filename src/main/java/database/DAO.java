@@ -604,7 +604,7 @@ public class DAO implements IDAO {
             throw p;
         }
     }
-    ArrayList<IUserDTO> getAllUsers() throws SQLException{
+    public ArrayList<IUserDTO> getAllUsers() throws SQLException{
         ArrayList<IUserDTO> users = new ArrayList<IUserDTO>();
         try {
 
@@ -615,7 +615,6 @@ public class DAO implements IDAO {
             while (result.next()) {
                 user = new UserDTO();
                 user.setID(result.getInt("UserID"));
-                user.setID(userid);
                 user.setName(result.getString("Username"));
                 user.setPassword(result.getString("Password"));
                 user.setRole(result.getInt("Roles"));
@@ -628,7 +627,7 @@ public class DAO implements IDAO {
         return users;
     }
 
-    ArrayList<ICharacterDTO> getAllCharacters() throws SQLException{
+    public ArrayList<ICharacterDTO> getAllCharacters() throws SQLException{
         ArrayList<ICharacterDTO> characters = new ArrayList<ICharacterDTO>();
         try {
 
@@ -653,14 +652,14 @@ public class DAO implements IDAO {
 
     }
 
-    ArrayList<IItemDTO> getAllItems() throws SQLException{
+        public ArrayList<IItemDTO> getAllItems() throws SQLException{
         ArrayList<IItemDTO> items = new ArrayList<IItemDTO>();
         try {
 
             String query = "SELECT * FROM cdio.item";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
-            IItemDTO items;
+            IItemDTO item;
             while (result.next()) {
                 item = new ItemDTO();
                 item.setID(result.getInt("ItemID"));
@@ -676,7 +675,7 @@ public class DAO implements IDAO {
         return items;
     }
 
-    ArrayList<IGroupDTO> getAllGroups() throws SQLException{
+    public  ArrayList<IGroupDTO> getAllGroups() throws SQLException{
         ArrayList<IGroupDTO> groups = new ArrayList<IGroupDTO>();
         try {
 
