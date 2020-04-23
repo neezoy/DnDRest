@@ -2,6 +2,7 @@ package rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import dataTypes.CharacterDTO;
 import dataTypes.ICharacterDTO;
 import database.DAO;
 import database.IDAO;
@@ -47,11 +48,18 @@ public class CharacterService {
 
     @POST
     @Path("save")
-    public Response postCharacter(@FormParam("name") String name, @FormParam("level") String level){
+    public Response postCharacter(@FormParam("charactername") String charactername, @FormParam("location") String location,
+                                  @FormParam("strength") int strength, @FormParam("bonuscapacity") int bonuscapacity) throws SQLException {
 
         String response = "Successfully added character name: "+
-                name+" and level: "+ level;
+                charactername+" and level: "+ location;
 
+        ICharacterDTO charac = new CharacterDTO(charactername, strength, bonuscapacity);
+        charac.setLocation(location);
+
+        IDAO dao = new DAO();
+        dao.createCharacter(charac);
+        
         //response is output in this case
         return Response.status(200).entity(response).build();
 
