@@ -59,7 +59,7 @@ public class CharacterService {
 
         IDAO dao = new DAO();
         dao.createCharacter(charac);
-        
+
         //response is output in this case
         return Response.status(200).entity(response).build();
 
