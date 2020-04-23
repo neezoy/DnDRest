@@ -3,9 +3,9 @@
 <head>
 
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="Master.css">
-
-</head>
+  <link rel="stylesheet" type="text/css" href="Master.css">
+    <script type="text/javascript" src="jquery-3.4.1.js"></script>
+    </head>
 <body>
 <div id = "headerDiv">
     <h2>D&D</h2>
@@ -13,52 +13,50 @@
         <button onclick="switchPage('AllUsers.html');">User</button>
         <button onclick="switchPage('AllCharacters.html');">Character</button>
         <button onclick="switchPage('AllItems.html');">Item</button>
-        <button onclick="switchPage('AllGroups.html');">Group</button>
+        <button onclick="switchPage('AllGroups.html')">Group</button>
     </div>
 </div>
 
     <br>
-
     <div class="innerBody">
         <form>
-            <table>
+            <table id="myTable">
                 <tr>
                     <th>List of all characters</th>
                     <th>Location</th>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
                 </tr>
             </table>
         </form>
+        <button onclick="insertTable();">Create row </button>
+
+
+        <script> function insertTable(){
+            var characterList;
+            $.get("http://localhost:8080/rest/character/all", function(data){
+                characterList = data;
+            for ( i in characterList) {
+                var table = document.getElementById("myTable");
+                var row1 = table.insertRow(0);
+                var cell1Name = row1.insertCell(0);
+                var cell2Location = row1.insertCell(1);
+
+                cell1Name.innerHTML = characterList[i].name;
+                cell2Location.innerHTML= characterList[i].location;
+            }
+            });
+        }</script>
+
+
+
+        <form action="rest/character/save" method="post">
+            <p>Character name : <input type="text" name="CharacterName" /></p>
+            <p>Location : <input type="text" name="Location" /></p>
+            <p>Strength: <input type="text" name="Strength" /></p>
+            <p>Bonus Capacity : <input type="text" name="BonusCapacity" /></p>
+            <input type="submit" value="Enter Details" />
+        </form>
+        <button onclick="insertTable();">Create character </button>
+
     </div>
 </body>
 </html>

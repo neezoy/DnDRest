@@ -40,7 +40,7 @@ public class CharacterDTO implements ICharacterDTO {
     }
 
     @Override
-    public void setLocation(String Location) {
+    public void setLocation(String location) {
         this.location=location;
     }
 
