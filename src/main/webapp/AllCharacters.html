@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="UTF-8">
-<!--    <link rel="stylesheet" type="text/css" href="Master.css">-->
+  <link rel="stylesheet" type="text/css" href="Master.css">
     <script type="text/javascript" src="jquery-3.4.1.js"></script>
     </head>
 <body>
@@ -34,10 +34,7 @@
             var characterList;
             $.get("http://localhost:8080/rest/character/all", function(data){
                 characterList = data;
-                // alert(characterList[0].name);
-                console.log(characterList[1].name);
             for ( i in characterList) {
-                alert("wow")
                 var table = document.getElementById("myTable");
                 var row1 = table.insertRow(0);
                 var cell1Name = row1.insertCell(0);
@@ -47,8 +44,19 @@
                 cell2Location.innerHTML= characterList[i].location;
             }
             });
-
         }</script>
+
+
+
+        <form action="rest/character/save" method="post">
+            <p>Character name : <input type="text" name="CharacterName" /></p>
+            <p>Location : <input type="text" name="Location" /></p>
+            <p>Strength: <input type="text" name="Strength" /></p>
+            <p>Bonus Capacity : <input type="text" name="BonusCapacity" /></p>
+            <input type="submit" value="Enter Details" />
+        </form>
+        <button onclick="insertTable();">Create character </button>
+
     </div>
 </body>
 </html>
