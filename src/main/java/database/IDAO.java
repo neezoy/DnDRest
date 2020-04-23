@@ -15,7 +15,7 @@ public interface IDAO {
 
     IUserDTO getUserFromName(String username) throws SQLException;
 
-    UserDTO getUser(int userid) throws SQLException;
+    IUserDTO getUser(int userid) throws SQLException;
 
     void createCharacter(ICharacterDTO character) throws SQLException;
 
