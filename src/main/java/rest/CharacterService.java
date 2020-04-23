@@ -2,6 +2,8 @@ package rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import database.DAO;
+import database.IDAO;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -9,6 +11,19 @@ import javax.ws.rs.core.Response;
 
 @Path("character")
 public class CharacterService {
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("all")
+    public String getAllCharacter(@PathParam("id") String id){
+
+        IDAO dao = new DAO();
+
+        return "Your character is: " + id;
+
+    }
+
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
