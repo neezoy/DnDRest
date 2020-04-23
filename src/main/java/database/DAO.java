@@ -696,4 +696,5 @@ public class DAO implements IDAO {
         }
         return groups;
     }
+    //TODO comment to be deleted
 }
