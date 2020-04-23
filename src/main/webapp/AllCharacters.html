@@ -3,9 +3,9 @@
 <head>
 
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="Master.css">
-
-</head>
+<!--    <link rel="stylesheet" type="text/css" href="Master.css">-->
+    <script type="text/javascript" src="jquery-3.4.1.js"></script>
+    </head>
 <body>
 <div id = "headerDiv">
     <h2>D&D</h2>
@@ -13,52 +13,42 @@
         <button onclick="switchPage('AllUsers.html');">User</button>
         <button onclick="switchPage('AllCharacters.html');">Character</button>
         <button onclick="switchPage('AllItems.html');">Item</button>
-        <button onclick="switchPage('AllGroups.html');">Group</button>
+        <button onclick="switchPage('AllGroups.html')">Group</button>
     </div>
 </div>
 
     <br>
-
     <div class="innerBody">
         <form>
-            <table>
+            <table id="myTable">
                 <tr>
                     <th>List of all characters</th>
                     <th>Location</th>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
                 </tr>
             </table>
         </form>
+        <button onclick="insertTable();">Create row </button>
+
+
+        <script> function insertTable(){
+            var characterList;
+            $.get("http://localhost:8080/rest/character/all", function(data){
+                characterList = data;
+                // alert(characterList[0].name);
+                console.log(characterList[1].name);
+            for ( i in characterList) {
+                alert("wow")
+                var table = document.getElementById("myTable");
+                var row1 = table.insertRow(0);
+                var cell1Name = row1.insertCell(0);
+                var cell2Location = row1.insertCell(1);
+
+                cell1Name.innerHTML = characterList[i].name;
+                cell2Location.innerHTML= characterList[i].location;
+            }
+            });
+
+        }</script>
     </div>
 </body>
 </html>
