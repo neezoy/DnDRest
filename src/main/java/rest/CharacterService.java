@@ -61,7 +61,7 @@ public class CharacterService {
         dao.createCharacter(charac);
 
         //response is output in this case
-        return Response.status(200).entity(response).build();
+        return null;
 
     }
 

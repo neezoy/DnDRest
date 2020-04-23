@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="Master.css">
+    <link rel="stylesheet" type="text/css" href="Master.css">
     <script type="text/javascript" src="jquery-3.4.1.js"></script>
     </head>
 <body>
@@ -29,6 +29,9 @@
         </form>
         <button onclick="insertTable();">Create row </button>
 
+        <script> function message() {
+            alert("Hello")
+        }</script>
 
         <script> function insertTable(){
             var characterList;
@@ -36,12 +39,13 @@
                 characterList = data;
             for ( i in characterList) {
                 var table = document.getElementById("myTable");
-                var row1 = table.insertRow(0);
+                var row1 = table.insertRow(1);
                 var cell1Name = row1.insertCell(0);
                 var cell2Location = row1.insertCell(1);
 
                 cell1Name.innerHTML = characterList[i].name;
                 cell2Location.innerHTML= characterList[i].location;
+                row1.onclick=message();
             }
             });
         }</script>
@@ -54,6 +58,8 @@
             <p>Strength: <input type="text" name="strength" /></p>
             <p>Bonus Capacity : <input type="text" name="bonuscapacity" /></p>
             <input type="submit" value="Create character" />
+            <input type="submit" value="Update character" />
+            <input type="submit" value="Delete character" />
         </form>
 
     </div>
