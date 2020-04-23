@@ -77,7 +77,7 @@ public class DAO implements IDAO {
         return user;
     }
     @Override
-    public UserDTO getUser(int userid) throws SQLException {
+    public IUserDTO getUser(int userid) throws SQLException {
         UserDTO user = new UserDTO();
         try {
             String query = "SELECT * FROM User WHERE UserID = " + userid + ";";
