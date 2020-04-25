@@ -30,7 +30,7 @@
 
     <script> function insertTable(){
         var itemList;
-        $.get("http://localhost:8080/rest/item/all", function(data){
+        $.get("http://localhost:8080/rest/user/all", function(data){
             itemList = data;
             for ( i in itemList) {
                 var table = document.getElementById("myTable");
@@ -44,12 +44,35 @@
 
 
     <form action="rest/items/save" method="post">
-        <p>Item name : <input type="text" name="itemname" /></p>
-        <input type="submit" value="Create item" />
-        <input type="submit" value="Update item" />
-        <input type="submit" value="Delete item" />
-
+        <p>Item name : <input type="text" name="itemname" id="itemname" /></p>
+        <p>Description : <input type="text" name="description" id="description" /></p>
+        <input type="submit" value="Create user" onclick=selecter(1); />
+        <input type="submit" value="Update user" onclick=selecter(2); />
+        <input type="submit" value="Delete user" onclick=selecter(3); />
+        <p><input type="hidden" value="" name="itemid"/></p>
+        <p><input type="hidden" value="" name="selection"/></p>
     </form>
+
+
+    <form onload="updateTextField()" action="rest/item/search">
+        <p>Character ID <input type="text" name="id" id="id" /></p>
+        <input type="button" onclick=updateTextField(); value="Search"/>
+    </form>
+
+    <script>function updateTextField() {
+        $.get("http://localhost:8080/rest/item/"+id, function(data){
+            document.getElementById("itemname").value = data.groupname;
+            document.getElementById("description").value = data.description;
+            document.getElementById("itemid").value = data.groupid;
+            ;});
+    } </script>
+
+    <script>function selecter(x) {
+        document.getElementById("selection").value = x;
+    } </script>
+
+
+
 
 
 </body>

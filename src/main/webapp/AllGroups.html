@@ -62,7 +62,7 @@
     </form>
 
     <script>function updateTextField() {
-        $.get("http://localhost:8080/rest/user/"+id, function(data){
+        $.get("http://localhost:8080/rest/group/"+id, function(data){
             document.getElementById("groupname").value = data.groupname;
             document.getElementById("description").value = data.description;
             document.getElementById("groupid").value = data.itemid;

@@ -55,20 +55,35 @@
             <p>Character name  <input type="text" name="charactername" id="charactername"/></p>
             <p>Location  <input type="text" name="location" id="location"/></p>
             <p>Strength <input type="text" name="strength" id="strength" /></p>
-            <p>Bonus Capacity  <input type="text" name="bonuscapacity" id="bonuscapacity"/></p>
-            <p> <input type="button" value="Create character  " /></p>
-            <p> <input type="button" value="Update character " /></p>
-            <p><input type="button" value="Delete character  " /></p>
+            <p>Bonus Capacity  <input type="text" name="bonus" id="bonus"/></p>
+            <input type="submit" value="Create user" onclick=selecter(1); />
+            <input type="submit" value="Update user" onclick=selecter(2); />
+            <input type="submit" value="Delete user" onclick=selecter(3); />
+            <p><input type="hidden" value="" name="characterid"/></p>
+            <p><input type="hidden" value="" name="selection"/></p>
         </form>
 
-        <form>
-            <p>Character ID <input type="text" name="id" id="id" /></p>
+        <form onload="updateTextField()" action="rest/character/search">
+            <p>Character ID <input type="text" name="id" id="id"  /></p>
             <input type="button" onclick=updateTextField(); value="Search"/>
         </form>
 
         <script>function updateTextField() {
-            document.getElementById("location").value = "hdsjahdjsahjdhsajdhsa";
+            $.get("http://localhost:8080/rest/character/"+document.getElementById("id").value, function(data){
+                console.log(data.name)
+                document.getElementById("charactername").value = data.name;
+                document.getElementById("location").value = data.location;
+                document.getElementById("strength").value = data.strength;
+                document.getElementById("bonus").value = data.bonus;
+                document.getElementById("characterid").value = data.characterid;
+                ;});
         } </script>
+
+        <script>function selecter(x) {
+            document.getElementById("selection").value = x;
+        } </script>
+
+
 
     </div>
 </body>
