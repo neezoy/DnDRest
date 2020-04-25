@@ -64,13 +64,16 @@ public class CharacterService {
         switch (selection){
             case 1:
                 dao.createCharacter(charac);
+                break;
 
             case 2:
                 charac.setID(characterid);
                 dao.overwriteCharacter(charac);
+                break;
 
             case 3:
                 dao.deleteCharacter(characterid);
+                break;
         }
 
 
