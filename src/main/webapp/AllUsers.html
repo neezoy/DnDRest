@@ -32,7 +32,7 @@
 
     <script> function insertTable(){
         var userList;
-        $.get("http://localhost:8080/rest/character/all", function(data){
+        $.get("http://localhost:8080/rest/user/all", function(data){
             userList = data;
             for ( i in userList) {
                 var table = document.getElementById("myTable");

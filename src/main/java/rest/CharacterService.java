@@ -1,7 +1,5 @@
 package rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import dataTypes.CharacterDTO;
 import dataTypes.ICharacterDTO;
 import database.DAO;
@@ -33,7 +31,7 @@ public class CharacterService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    public String getCharacter(@PathParam("id") String id){
+    public ICharacterDTO getCharacter(@PathParam("id") int id) throws SQLException {
 
         /* Json Conversion
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -41,8 +39,9 @@ public class CharacterService {
 
          */
 
+        IDAO dao = new DAO();
 
-        return "Your character is: " + id;
+        return dao.getCharacter(id);
 
     }
 

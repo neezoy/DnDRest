@@ -30,7 +30,7 @@
 
     <script> function insertTable(){
         var itemList;
-        $.get("http://localhost:8080/rest/character/all", function(data){
+        $.get("http://localhost:8080/rest/item/all", function(data){
             itemList = data;
             for ( i in itemList) {
                 var table = document.getElementById("myTable");
@@ -45,9 +45,10 @@
 
     <form action="rest/items/save" method="post">
         <p>Item name : <input type="text" name="itemname" /></p>
-        <input type="submit" value="Create group" />
-        <input type="submit" value="Update group" />
-        <input type="submit" value="Delete group" />
+        <input type="submit" value="Create item" />
+        <input type="submit" value="Update item" />
+        <input type="submit" value="Delete item" />
+
     </form>
 
 

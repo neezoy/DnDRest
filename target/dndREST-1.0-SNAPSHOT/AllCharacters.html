@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="Master.css">
     <script type="text/javascript" src="jquery-3.4.1.js"></script>
     </head>
-<body>
+<body onload="insertTable();">
 <div id = "headerDiv">
     <h2>D&D</h2>
     <div id = "headerContainer">
@@ -19,21 +19,16 @@
 
     <br>
     <div class="innerBody">
-        <form>
             <table id="myTable">
                 <tr>
                     <th>List of all characters</th>
                     <th>Location</th>
                 </tr>
             </table>
-        </form>
-        <button onclick="insertTable();">Create row </button>
-
-        <script> function message() {
-            alert("Hello")
-        }</script>
+        <button onclick="insertTable()">jdksa</button>
 
         <script> function insertTable(){
+            console.log("jdskajkdsada")
             var characterList;
             $.get("http://localhost:8080/rest/character/all", function(data){
                 characterList = data;
@@ -45,22 +40,35 @@
 
                 cell1Name.innerHTML = characterList[i].name;
                 cell2Location.innerHTML= characterList[i].location;
-                row1.onclick=message();
+
+                /*$(row1).on('click', function(event){
+                    alert(event.target.id);
+                })*/
             }
             });
         }</script>
 
 
 
+
         <form action="rest/character/save" method="post">
-            <p>Character name : <input type="text" name="charactername" /></p>
-            <p>Location : <input type="text" name="location" /></p>
-            <p>Strength: <input type="text" name="strength" /></p>
-            <p>Bonus Capacity : <input type="text" name="bonuscapacity" /></p>
-            <input type="submit" value="Create character" />
-            <input type="submit" value="Update character" />
-            <input type="submit" value="Delete character" />
+            <p>Character name  <input type="text" name="charactername" id="charactername"/></p>
+            <p>Location  <input type="text" name="location" id="location"/></p>
+            <p>Strength <input type="text" name="strength" id="strength" /></p>
+            <p>Bonus Capacity  <input type="text" name="bonuscapacity" id="bonuscapacity"/></p>
+            <p> <input type="button" value="Create character  " /></p>
+            <p> <input type="button" value="Update character " /></p>
+            <p><input type="button" value="Delete character  " /></p>
         </form>
+
+        <form>
+            <p>Character ID <input type="text" name="id" id="id" /></p>
+            <input type="button" onclick=updateTextField(); value="Search"/>
+        </form>
+
+        <script>function updateTextField() {
+            document.getElementById("location").value = "hdsjahdjsahjdhsajdhsa";
+        } </script>
 
     </div>
 </body>

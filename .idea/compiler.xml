@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="DnDRest" />
         <module name="dndREST" />
+        <module name="DnDRest2" />
       </profile>
     </annotationProcessing>
   </component>

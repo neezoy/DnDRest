@@ -20,46 +20,39 @@
     <br>
 
     <div class="innerBody">
-        <form>
             <table>
                 <tr>
                     <th>List of all users</th>
-
                     <th>Roles</th>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-
                 </tr>
             </table>
-        </form>
     </div>
+
+<button onclick="insertTable();">Create row </button>
+
+    <script> function insertTable(){
+        var userList;
+        $.get("http://localhost:8080/rest/user/all", function(data){
+            userList = data;
+            for ( i in userList) {
+                var table = document.getElementById("myTable");
+                var row1 = table.insertRow(1);
+                var cell1User = row1.insertCell(0);
+                var cell2Roles = row1.insertCell(1);
+
+                cell1User.innerHTML = userList[i].name;
+                cell2Roles.innerHTML= userList[i].location;
+            }
+        });
+    }</script>
+
+
+    <form action="rest/users/save" method="post">
+        <p>User name : <input type="text" name="username" /></p>
+        <p>Role : <input type="text" name="role" /></p>
+        <input type="submit" value="Create user" />
+        <input type="submit" value="Update user" />
+        <input type="submit" value="Delete user" />
+    </form>
 </body>
 </html>
