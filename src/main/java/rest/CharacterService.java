@@ -48,16 +48,32 @@ public class CharacterService {
     @POST
     @Path("save")
     public Response postCharacter(@FormParam("charactername") String charactername, @FormParam("location") String location,
-                                  @FormParam("strength") int strength, @FormParam("bonuscapacity") int bonuscapacity) throws SQLException {
+                                  @FormParam("strength") int strength, @FormParam("bonuscapacity") int bonuscapacity,
+                                  @FormParam("characterid") int characterid, @FormParam("selection") int selection) throws SQLException {
 
-        String response = "Successfully added character name: "+
-                charactername+" and level: "+ location;
+        // 1 create
+        // 2 update
+        // 3 delete
+
+        IDAO dao = new DAO();
 
         ICharacterDTO charac = new CharacterDTO(charactername, strength, bonuscapacity);
         charac.setLocation(location);
 
-        IDAO dao = new DAO();
-        dao.createCharacter(charac);
+
+        switch (selection){
+            case 1:
+                dao.createCharacter(charac);
+
+            case 2:
+                charac.setID(characterid);
+                dao.overwriteCharacter(charac);
+
+            case 3:
+                dao.deleteCharacter(characterid);
+        }
+
+
 
         //response is output in this case
         return null;
