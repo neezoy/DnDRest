@@ -30,8 +30,8 @@ public class CharacterService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("search")
-    public ICharacterDTO getCharacter(@FormParam("id") int id) throws SQLException {
+    @Path("{id}")
+    public ICharacterDTO getCharacter(@PathParam("id") int id) throws SQLException {
 
         /* Json Conversion
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
