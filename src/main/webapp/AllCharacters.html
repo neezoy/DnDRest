@@ -19,19 +19,14 @@
 
     <br>
     <div class="innerBody">
-        <form>
             <table id="myTable">
                 <tr>
                     <th>List of all characters</th>
                     <th>Location</th>
                 </tr>
             </table>
-        </form>
         <button onclick="insertTable();">Create row </button>
 
-        <script> function message() {
-            alert("Hello")
-        }</script>
 
         <script> function insertTable(){
             var characterList;
@@ -45,7 +40,6 @@
 
                 cell1Name.innerHTML = characterList[i].name;
                 cell2Location.innerHTML= characterList[i].location;
-                row1.onclick=message();
             }
             });
         }</script>

@@ -20,42 +20,36 @@
     <br>
 
     <div class="innerBody">
-        <form>
             <table>
                 <tr>
                     <th>List of all items</th>
-
-                </tr>
-                <tr>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-
-
-                </tr>
-                <tr>
-                    <td></td>
-
-
-                </tr>
-                <tr>
-                    <td></td>
-
-
-                </tr>
-                <tr>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td></td>
-
-
                 </tr>
             </table>
-        </form>
     </div>
+    <button onclick="insertTable();">Create row </button>
+
+    <script> function insertTable(){
+        var itemList;
+        $.get("http://localhost:8080/rest/character/all", function(data){
+            itemList = data;
+            for ( i in itemList) {
+                var table = document.getElementById("myTable");
+                var row1 = table.insertRow(1);
+                var cell1Name = row1.insertCell(0);
+
+                cell1Name.innerHTML = itemList[i].name;
+            }
+        });
+    }</script>
+
+
+    <form action="rest/items/save" method="post">
+        <p>Item name : <input type="text" name="itemname" /></p>
+        <input type="submit" value="Create group" />
+        <input type="submit" value="Update group" />
+        <input type="submit" value="Delete group" />
+    </form>
+
+
 </body>
 </html>
