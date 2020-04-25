@@ -38,6 +38,8 @@ public interface IDAO {
     //Now we define functions to create and delete rows in the relational tables.
     void addCharacter(IUserDTO user, ICharacterDTO character) throws SQLException;
 
+    void deleteCharacter(int characterid) throws SQLException;
+
     void removeCharacter(int characterid) throws SQLException; //Only needs characterid because a character can only be owned by one person.
 
     ArrayList getCharacterIDs(int userid) throws SQLException;
@@ -63,15 +65,15 @@ public interface IDAO {
     //Lastly we define functions which deletes or overwrites data from the database.
     void deleteUser(int userid) throws SQLException;
 
-    void overwriteUser(UserDTO user) throws SQLException;
+    void overwriteUser(IUserDTO user) throws SQLException;
 
-    void overwriteCharacter(CharacterDTO character) throws SQLException;
+    void overwriteCharacter(ICharacterDTO character) throws SQLException;
 
-    void overwriteItem(ItemDTO item) throws SQLException;
+    void overwriteItem(IItemDTO item) throws SQLException;
 
     void deleteItem(int itemid) throws SQLException;
 
-    void overwriteGroup(GroupDTO group) throws SQLException;
+    void overwriteGroup(IGroupDTO group) throws SQLException;
 
     void deleteGroup(int groupid) throws SQLException;
 

@@ -311,6 +311,21 @@ public class DAO implements IDAO {
 
         user.addCharacter(character);
     }
+
+    @Override
+    public void deleteCharacter(int characterid) throws SQLException {
+        try {
+            String query = "DELETE FROM Character WHERE characterID ='" + characterid + "'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.execute();
+
+
+        } catch (SQLException p) {
+            throw p;
+        }
+    }
+
     @Override
     public void removeCharacter(int characterid) throws SQLException {
         //TODO: I'm not sure about whether we should remove the character from the UserDTO. We probably should, to keep the data consistent.
@@ -514,7 +529,7 @@ public class DAO implements IDAO {
         }
     }
     @Override
-    public void overwriteUser(UserDTO user) throws SQLException {
+    public void overwriteUser(IUserDTO user) throws SQLException {
         try {
 
             String query = "UPDATE User SET Username = ?, Password = ?, Roles = ? WHERE UserID = '" + user.getID() + "'";
@@ -530,7 +545,7 @@ public class DAO implements IDAO {
         }
     }
     @Override
-    public void overwriteCharacter(CharacterDTO character) throws SQLException {
+    public void overwriteCharacter(ICharacterDTO character) throws SQLException {
         try {
 
             String query = "UPDATE Character SET Cname = ?, Location = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '" + character.getID() + "'";
@@ -547,7 +562,7 @@ public class DAO implements IDAO {
         }
     }
     @Override
-    public void overwriteItem(ItemDTO item) throws SQLException {
+    public void overwriteItem(IItemDTO item) throws SQLException {
         try {
 
             String query = "UPDATE Item SET ItemName = ?, Weight = ?, Description = ? WHERE ItemID = '" + item.getID() + "'";
@@ -577,7 +592,7 @@ public class DAO implements IDAO {
         }
     }
     @Override
-    public void overwriteGroup(GroupDTO group) throws SQLException {
+    public void overwriteGroup(IGroupDTO group) throws SQLException {
         try {
             String query = "UPDATE Group SET GroupName = ?, Description = ? WHERE GroupID = '" + group.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
@@ -630,8 +645,7 @@ public class DAO implements IDAO {
     public ArrayList<ICharacterDTO> getAllCharacters() throws SQLException{
         ArrayList<ICharacterDTO> characters = new ArrayList<ICharacterDTO>();
         try {
-
-            String query = "SELECT * FROM cdio.character ORDER BY CName DESC";
+            String query = "SELECT * FROM cdio.character ORDER BY CName";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
             ICharacterDTO character;
