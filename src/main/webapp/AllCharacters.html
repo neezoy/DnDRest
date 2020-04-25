@@ -30,7 +30,7 @@
         <script> function insertTable(){
             console.log("jdskajkdsada")
             var characterList;
-            $.get("http://localhost:8080/rest/character/all", function(data){
+            $.get("http://localhost:8080/rest/user/all", function(data){
                 characterList = data;
             for ( i in characterList) {
                 var table = document.getElementById("myTable");
@@ -56,9 +56,9 @@
             <p>Location  <input type="text" name="location" id="location"/></p>
             <p>Strength <input type="text" name="strength" id="strength" /></p>
             <p>Bonus Capacity  <input type="text" name="bonuscapacity" id="bonuscapacity"/></p>
-            <p> <input type="button" value="Create character  " onclick=selectCreate(); /></p>
-            <p> <input type="button" value="Update character " onclick=selectUpdate(); /></p>
-            <p><input type="button" value="Delete character  " onclick=selectDelete(); /></p>
+            <input type="submit" value="Create user" onclick=selecter(1); />
+            <input type="submit" value="Update user" onclick=selecter(2); />
+            <input type="submit" value="Delete user" onclick=selecter(3); />
             <p><input type="hidden" value="" name="characterid"/></p>
             <p><input type="hidden" value="" name="selection"/></p>
         </form>
@@ -69,7 +69,7 @@
         </form>
 
         <script>function updateTextField() {
-            $.get("http://localhost:8080/rest/character/"+id, function(data){
+            $.get("http://localhost:8080/rest/user/"+id, function(data){
                 document.getElementById("charactername").value = data.name;
                 document.getElementById("location").value = data.location;
                 document.getElementById("strength").value = data.strength;
@@ -78,23 +78,11 @@
                 ;});
         } </script>
 
-        <script>function selectCreate() {
-            $.get("http://localhost:8080/rest/character/"+id, function(data){
-                ;});
-            document.getElementById("selection").value = "1";
+        <script>function selecter(x) {
+            document.getElementById("selection").value = x;
         } </script>
 
-        <script>function selectUpdate() {
-            $.get("http://localhost:8080/rest/character/"+id, function(data){
-                ;});
-            document.getElementById("selection").value = "2";
-        } </script>
 
-        <script>function selectDelete() {
-            $.get("http://localhost:8080/rest/character/"+id, function(data){
-                ;});
-            document.getElementById("selection").value = "3";
-        } </script>
 
     </div>
 </body>
