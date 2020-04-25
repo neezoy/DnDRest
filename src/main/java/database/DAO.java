@@ -631,7 +631,7 @@ public class DAO implements IDAO {
         ArrayList<ICharacterDTO> characters = new ArrayList<ICharacterDTO>();
         try {
 
-            String query = "SELECT * FROM cdio.character ORDER BY CName";
+            String query = "SELECT * FROM cdio.character ORDER BY CName DESC";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
             ICharacterDTO character;

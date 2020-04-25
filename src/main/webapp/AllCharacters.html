@@ -30,6 +30,7 @@
 
         <script> function insertTable(){
             var characterList;
+            var counter=0;
             $.get("http://localhost:8080/rest/character/all", function(data){
                 characterList = data;
             for ( i in characterList) {
@@ -40,6 +41,11 @@
 
                 cell1Name.innerHTML = characterList[i].name;
                 cell2Location.innerHTML= characterList[i].location;
+                counter++;
+
+                $(row1).on('click', function(event){
+                    alert(event.target.id);
+                })
             }
             });
         }</script>
