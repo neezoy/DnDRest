@@ -48,7 +48,7 @@ public class CharacterService {
     @POST
     @Path("save")
     public Response postCharacter(@FormParam("charactername") String charactername, @FormParam("location") String location,
-                                  @FormParam("strength") int strength, @FormParam("bonuscapacity") int bonuscapacity,
+                                  @FormParam("strength") int strength, @FormParam("bonus") int bonus,
                                   @FormParam("characterid") int characterid, @FormParam("selection") int selection) throws SQLException {
 
         // 1 create
@@ -57,7 +57,7 @@ public class CharacterService {
 
         IDAO dao = new DAO();
 
-        ICharacterDTO charac = new CharacterDTO(charactername, strength, bonuscapacity);
+        ICharacterDTO charac = new CharacterDTO(charactername, strength, bonus);
         charac.setLocation(location);
 
 
