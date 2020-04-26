@@ -18,7 +18,7 @@ public class CharacterService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("all")
-    public ArrayList<ICharacterDTO> getAllCharacter(@PathParam("id") String id) throws SQLException {
+    public ArrayList<ICharacterDTO> getAllCharacter() throws SQLException {
 
         IDAO dao = new DAO();
 
