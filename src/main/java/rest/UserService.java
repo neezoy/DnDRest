@@ -1,41 +1,75 @@
 package rest;
 
+import dataTypes.GroupDTO;
+import dataTypes.IGroupDTO;
+import dataTypes.IUserDTO;
+import dataTypes.UserDTO;
+import database.DAO;
+import database.IDAO;
+
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 @Path("user")
 public class UserService {
 
     @GET
     @Path("{id}")
-    public String getUser(@PathParam("id") String id){
+    public IUserDTO getUser(@PathParam("id") int id) throws SQLException {
 
-        return "Your character is: " + id;
+        IDAO dao = new DAO();
+
+        return dao.getUser(id);
+
+    }
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("all")
+    public ArrayList<IUserDTO> getAllUsers() throws SQLException {
+
+        IDAO dao = new DAO();
+
+
+        return dao.getAllUsers();
 
     }
 
     @POST
     @Path("save")
-    public Response postUser(@FormParam("name") String name, @FormParam("level") String level){
+    public Response postUser(@FormParam("username") String username,
+                             @FormParam("role") String role,
+                             @FormParam("password") String password,
+                             @FormParam("userid") int userid,
+                             @FormParam("selection") int selection) throws SQLException {
 
-        String response = "Successfully added user name: "+
-                name+" and password: "+ level;
+        // 1 create
+        // 2 update
+        // 3 delete
 
-        //response is output in this case
-        return Response.status(200).entity(response).build();
+        IDAO dao = new DAO();
 
-    }
+        IUserDTO user = new UserDTO(username, role);
 
+        switch (selection) {
+            case 1:
+                dao.createUser(user);
+                break;
 
-    @POST
-    @Path("addcharacter/{character}/{user}")
-    public Response addCharacterToUser(@PathParam("character") String character, @PathParam("user") String user) {
+            case 2:
+                user.setID(userid);
+                dao.overwriteUser(user);
+                break;
 
-        String response = "Successfully added character name: "+
-                character +" to user: "+ user;
-
-        //response is output in this case
-        return Response.status(200).entity(response).build();
+            case 3:
+                dao.deleteUser(userid);
+                break;
+        }
+        return null;
 
     }
 
