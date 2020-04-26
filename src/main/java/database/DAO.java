@@ -548,12 +548,14 @@ public class DAO implements IDAO {
     public void overwriteCharacter(ICharacterDTO character) throws SQLException {
         try {
 
-            String query = "UPDATE Character SET Cname = ?, Location = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '" + character.getID() + "'";
+            String query = "UPDATE cdio.character SET Cname = ?, Location = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '" + character.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, character.getName());
             statement.setString(2, character.getLocation());
             statement.setInt(3, character.getStrength());
             statement.setInt(4, character.getBonus());
+            System.out.println(query);
+
             statement.execute();
 
 
