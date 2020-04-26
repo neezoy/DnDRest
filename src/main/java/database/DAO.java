@@ -596,7 +596,7 @@ public class DAO implements IDAO {
     @Override
     public void overwriteGroup(IGroupDTO group) throws SQLException {
         try {
-            String query = "UPDATE Group SET GroupName = ?, Description = ? WHERE GroupID = '" + group.getID() + "'";
+            String query = "UPDATE cdio.Group SET GroupName = ?, Description = ? WHERE GroupID = '" + group.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, group.getName());
             statement.setString(2, group.getDescription());
@@ -611,7 +611,7 @@ public class DAO implements IDAO {
     @Override
     public void deleteGroup(int groupid) throws SQLException {
         try {
-            String query = "DELETE FROM Group WHERE GroupID ='" + groupid + "'";
+            String query = "DELETE FROM cdio.Group WHERE GroupID ='" + groupid + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
