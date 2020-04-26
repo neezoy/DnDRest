@@ -5,8 +5,33 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="Master.css">
 
+    <script> function insertTable(){
+        $("#myTable tbody tr").remove();
+        var userList;
+        $.get("http://localhost:8080/rest/user/all", function(data){
+            userList = data;
+            console.log("wow");
+            console.log(userList);
+            for ( i in userList) {
+                var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
+                var row1 = table.insertRow(0);
+                var cell1Id = row1.insertCell(0);
+                var cell2Name = row1.insertCell(1);
+                var cell3Role = row1.insertCell(2);
+
+                cell1Id.innerHTML = userList[i].id;
+                cell2Name.innerHTML = userList[i].name;
+                cell3Role.innerHTML= userList[i].role;
+
+
+            }
+        }).fail(function () {
+        });
+
+    }</script>
+
 </head>
-<body>
+<body onload="insertTable();">
 <div id = "headerDiv">
     <h2>D&D</h2>
     <div id = "headerContainer">
@@ -20,48 +45,36 @@
     <br>
 
     <div class="innerBody">
-            <table>
-                <tr>
+            <table id="myTable">
+                <thead>
                     <th>Id</th>
-                    <th>Username</th>
-                    <th>Roles</th>
-                </tr>
+                    <th>User name</th>
+                    <th>Role</th>
+
+                </thead>
+                <tbody>
+
+                </tbody>
             </table>
 
 
 <button onclick="insertTable();">Create row </button>
 
-    <script> function insertTable(){
-        var userList;
-        $.get("http://localhost:8080/rest/user/all", function(data){
-            userList = data;
-            for ( i in userList) {
-                var table = document.getElementById("myTable");
-                var row1 = table.insertRow(1);
-                var cell1Id = row1.insertCell(0);
-                var cell2User = row1.insertCell(1);
-                var cell3Roles = row1.insertCell(2);
-
-                cell1Id.innerHTML = userList[i].id;
-                cell2User.innerHTML = userList[i].name;
-                cell3Roles.innerHTML= userList[i].role;
-            }
-        });
-    }</script>
 
 
-    <form action="rest/users/save" method="post">
-        <p>User name : <input type="text" name="username" /></p>
-        <p>Role : <input type="text" name="role" /></p>
+    <form action="rest/user/save" method="post">
+        <p>User name : <input type="text" name="username" id="username" /></p>
+        <p>Role : <input type="text" name="role" id="role" /></p>
+        <p>Password : <input type="text" name="password" id="password" /></p>
         <input type="submit" value="Create user" onclick=selecter(1); />
         <input type="submit" value="Update user" onclick=selecter(2); />
         <input type="submit" value="Delete user" onclick=selecter(3); />
-        <p><input type="hidden" value="" name="userid"/></p>
-        <p><input type="hidden" value="" name="selection"/></p>
+        <p><input type="hidden" value="" name="userid" id="userid"/></p>
+        <p><input type="hidden" value="" name="selection" id="selection"/></p>
     </form>
 
 
-
+        <script>insertTable();</script>
 
     <form onload="updateTextField()" action="rest/user/search">
         <p>Character ID <input type="text" name="id" id="id" /></p>
@@ -69,20 +82,17 @@
     </form>
 
     <script>function updateTextField() {
-        $.get("http://localhost:8080/rest/user/"+id, function(data){
+        $.get("http://localhost:8080/rest/user/"+document.getElementById("id").value, function(data){
             document.getElementById("username").value = data.username;
-            document.getElementById("description").value = data.description;
-            document.getElementById("userid").value = data.userid;
+            document.getElementById("role").value = data.role;
+            document.getElementById("password").value = data.password;
+            document.getElementById("userid").value = document.getElementById("id").value;
             ;});
     } </script>
 
     <script>function selecter(x) {
         document.getElementById("selection").value = x;
     } </script>
-
-
-
-
 
 
     </div>

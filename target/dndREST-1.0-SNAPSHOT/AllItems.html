@@ -22,7 +22,9 @@
     <div class="innerBody">
             <table>
                 <tr>
-                    <th>List of all items</th>
+                    <th>Id</th>
+                    <th>Item name</th>
+                    <th>Weight</th>
                 </tr>
             </table>
 
@@ -35,9 +37,13 @@
             for ( i in itemList) {
                 var table = document.getElementById("myTable");
                 var row1 = table.insertRow(1);
-                var cell1Name = row1.insertCell(0);
+                var cell1Id = row1.insertCell(0);
+                var cell2Name = row1.insertCell(1);
+                var cell3weight = row1.insertCell(2);
 
-                cell1Name.innerHTML = itemList[i].name;
+                cell1Id.innerHTML = itemList[i].id;
+                cell2Name.innerHTML = itemList[i].name;
+                cell3weight.innerHTML = itemList[i].weight;
             }
         });
     }</script>
