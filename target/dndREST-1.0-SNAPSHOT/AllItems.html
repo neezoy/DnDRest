@@ -25,12 +25,12 @@
                     <th>List of all items</th>
                 </tr>
             </table>
-    </div>
+
     <button onclick="insertTable();">Create row </button>
 
     <script> function insertTable(){
         var itemList;
-        $.get("http://localhost:8080/rest/user/all", function(data){
+        $.get("http://localhost:8080/rest/item/all", function(data){
             itemList = data;
             for ( i in itemList) {
                 var table = document.getElementById("myTable");
@@ -43,8 +43,9 @@
     }</script>
 
 
-    <form action="rest/items/save" method="post">
+    <form action="rest/item/save" method="post">
         <p>Item name : <input type="text" name="itemname" id="itemname" /></p>
+        <p>Item weight : <input type="text" name="weight" id="weight" /></p>
         <p>Description : <input type="text" name="description" id="description" /></p>
         <input type="submit" value="Create user" onclick=selecter(1); />
         <input type="submit" value="Update user" onclick=selecter(2); />
@@ -55,15 +56,16 @@
 
 
     <form onload="updateTextField()" action="rest/item/search">
-        <p>Character ID <input type="text" name="id" id="id" /></p>
+        <p>Item ID <input type="text" name="id" id="id" /></p>
         <input type="button" onclick=updateTextField(); value="Search"/>
     </form>
 
     <script>function updateTextField() {
-        $.get("http://localhost:8080/rest/item/"+id, function(data){
-            document.getElementById("itemname").value = data.groupname;
+        $.get("http://localhost:8080/rest/item/"+document.getElementById("id").value, function(data){
+            document.getElementById("itemname").value = data.itemname;
+            document.getElementById("weight").value = data.weight;
             document.getElementById("description").value = data.description;
-            document.getElementById("itemid").value = data.groupid;
+            document.getElementById("itemid").value = document.getElementById("itemid").value;
             ;});
     } </script>
 
@@ -73,7 +75,7 @@
 
 
 
-
+    </div>
 
 </body>
 </html>

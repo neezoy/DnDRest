@@ -8,6 +8,7 @@ import database.IDAO;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -18,13 +19,22 @@ public class CharacterService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("all")
-    public ArrayList<ICharacterDTO> getAllCharacter(@PathParam("id") String id) throws SQLException {
+    public ArrayList<ICharacterDTO> getAllCharacter() throws SQLException {
+        System.out.println("First error");
+        try {
+            IDAO dao = new DAO();
+            System.out.println("2 error");
 
-        IDAO dao = new DAO();
+            ArrayList<ICharacterDTO> d = dao.getAllCharacters();
 
+            System.out.println(d.size());
+            return d;
 
-        return dao.getAllCharacters();
+        } catch(Exception e) {e.printStackTrace();
+            System.out.println("3");}
 
+        System.out.println("4 error");
+        return null;
     }
 
 
@@ -68,6 +78,7 @@ public class CharacterService {
 
             case 2:
                 charac.setID(characterid);
+                System.out.println(characterid);
                 dao.overwriteCharacter(charac);
                 break;
 

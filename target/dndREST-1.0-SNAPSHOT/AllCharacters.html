@@ -5,7 +5,33 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="Master.css">
     <script type="text/javascript" src="jquery-3.4.1.js"></script>
-    </head>
+
+    <script> function insertTable(){
+        $("#myTable tbody tr").remove();
+        var characterList;
+        $.get("http://localhost:8080/rest/character/all", function(data){
+            characterList = data;
+            console.log("wow");
+            console.log(characterList);
+            for ( i in characterList) {
+                var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
+                var row1 = table.insertRow(0);
+                var cell1Name = row1.insertCell(0);
+                var cell2Location = row1.insertCell(1);
+
+                cell1Name.innerHTML = characterList[i].name;
+                cell2Location.innerHTML= characterList[i].location;
+
+                /*$(row1).on('click', function(event){
+                    alert(event.target.id);
+                })*/
+            }
+        }).fail(function () {
+            console.log("Fejl");
+        });
+
+    }</script>
+</head>
 <body onload="insertTable();">
 <div id = "headerDiv">
     <h2>D&D</h2>
@@ -20,46 +46,27 @@
     <br>
     <div class="innerBody">
             <table id="myTable">
-                <tr>
+                <thead>
                     <th>List of all characters</th>
                     <th>Location</th>
-                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
             </table>
-        <button onclick="insertTable()">jdksa</button>
 
-        <script> function insertTable(){
-            console.log("jdskajkdsada")
-            var characterList;
-            $.get("http://localhost:8080/rest/character/all", function(data){
-                characterList = data;
-            for ( i in characterList) {
-                var table = document.getElementById("myTable");
-                var row1 = table.insertRow(1);
-                var cell1Name = row1.insertCell(0);
-                var cell2Location = row1.insertCell(1);
-
-                cell1Name.innerHTML = characterList[i].name;
-                cell2Location.innerHTML= characterList[i].location;
-
-                /*$(row1).on('click', function(event){
-                    alert(event.target.id);
-                })*/
-            }
-            });
-        }</script>
+        <script>insertTable();</script>
 
 
-
-
-        <form action="rest/character/save" method="post">
+        <form action="rest/character/save" method="post" >
             <p>Character name  <input type="text" name="charactername" id="charactername"/></p>
             <p>Location  <input type="text" name="location" id="location"/></p>
             <p>Strength <input type="text" name="strength" id="strength" /></p>
             <p>Bonus Capacity  <input type="text" name="bonus" id="bonus"/></p>
-            <input type="submit" value="Create user" onclick=selecter(1); />
+            <input type="submit" value="Create user" onclick=selecter(1);  />
             <input type="submit" value="Update user" onclick=selecter(2); />
             <input type="submit" value="Delete user" onclick=selecter(3); />
-            <p><input type="hidden" value="" name="characterid"/></p>
+            <p><input type="hidden" value="" name="characterid" id="characterid"/></p>
             <p><input type="hidden" value="" name="selection" id="selection" /></p>
         </form>
 
@@ -70,12 +77,11 @@
 
         <script>function updateTextField() {
             $.get("http://localhost:8080/rest/character/"+document.getElementById("id").value, function(data){
-                console.log(data.name)
                 document.getElementById("charactername").value = data.name;
                 document.getElementById("location").value = data.location;
                 document.getElementById("strength").value = data.strength;
                 document.getElementById("bonus").value = data.bonus;
-                document.getElementById("characterid").value = data.characterid;
+                document.getElementById("characterid").value = document.getElementById("id").value;
                 ;});
         } </script>
 
@@ -83,6 +89,7 @@
             document.getElementById("selection").value = x;
         } </script>
 
+        <button onclick="insertTable()">Update table</button>
 
 
     </div>
