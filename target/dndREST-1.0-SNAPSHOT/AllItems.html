@@ -30,7 +30,7 @@
 
     <script> function insertTable(){
         var itemList;
-        $.get("http://localhost:8080/rest/user/all", function(data){
+        $.get("http://localhost:8080/rest/item/all", function(data){
             itemList = data;
             for ( i in itemList) {
                 var table = document.getElementById("myTable");

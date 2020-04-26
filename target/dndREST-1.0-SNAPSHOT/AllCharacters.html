@@ -70,7 +70,6 @@
 
         <script>function updateTextField() {
             $.get("http://localhost:8080/rest/character/"+document.getElementById("id").value, function(data){
-                console.log(data.name)
                 document.getElementById("charactername").value = data.name;
                 document.getElementById("location").value = data.location;
                 document.getElementById("strength").value = data.strength;
