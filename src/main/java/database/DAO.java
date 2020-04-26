@@ -315,7 +315,7 @@ public class DAO implements IDAO {
     @Override
     public void deleteCharacter(int characterid) throws SQLException {
         try {
-            String query = "DELETE FROM Character WHERE characterID ='" + characterid + "'";
+            String query = "DELETE FROM cdio.Character WHERE characterID ='" + characterid + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
