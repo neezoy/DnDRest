@@ -22,8 +22,8 @@
     <div class="innerBody">
             <table>
                 <tr>
-                    <th>List of all groups</th>
-                    <th>Members</th>
+                    <th>Id</th>
+                    <th>Group name</th>
                 </tr>
             </table>
 
@@ -36,11 +36,13 @@
             for ( i in groupList) {
                 var table = document.getElementById("myTable");
                 var row1 = table.insertRow(1);
-                var cell1Name = row1.insertCell(0);
-                var cell2Member = row1.insertCell(1);
+                var cell1Id = row1.insertCell(0);
+                var cell2Name = row1.insertCell(1);
 
-                cell1Name.innerHTML = groupList[i].name;
-                cell2Member.innerHTML= groupList[i].location;
+
+                cell1Id.innerHTML = groupList[i].id;
+                cell2Name.innerHTML = groupList[i].name;
+
             }
         });
     }</script>

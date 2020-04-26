@@ -16,11 +16,14 @@
             for ( i in characterList) {
                 var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
                 var row1 = table.insertRow(0);
-                var cell1Name = row1.insertCell(0);
-                var cell2Location = row1.insertCell(1);
+                var cell1Id = row1.insertCell(0);
+                var cell2Name = row1.insertCell(1);
+                var cell3Location = row1.insertCell(2);
 
-                cell1Name.innerHTML = characterList[i].name;
-                cell2Location.innerHTML= characterList[i].location;
+                cell1Id.innerHTML = characterList[i].id;
+                cell2Name.innerHTML = characterList[i].name;
+                cell3Location.innerHTML= characterList[i].location;
+
 
                 /*$(row1).on('click', function(event){
                     alert(event.target.id);
@@ -47,8 +50,10 @@
     <div class="innerBody">
             <table id="myTable">
                 <thead>
-                    <th>List of all characters</th>
+                    <th>Id</th>
+                    <th>Character name</th>
                     <th>Location</th>
+
                 </thead>
                 <tbody>
 
