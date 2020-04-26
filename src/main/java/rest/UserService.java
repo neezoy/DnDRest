@@ -46,7 +46,7 @@ public class UserService {
                              @FormParam("password") String password,
                              @FormParam("userid") int userid,
                              @FormParam("selection") int selection) throws SQLException {
-
+//TODO: Role is an integer, my man.
         // 1 create
         // 2 update
         // 3 delete
