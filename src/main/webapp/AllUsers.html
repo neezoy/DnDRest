@@ -22,7 +22,8 @@
     <div class="innerBody">
             <table>
                 <tr>
-                    <th>List of all users</th>
+                    <th>Id</th>
+                    <th>Username</th>
                     <th>Roles</th>
                 </tr>
             </table>
@@ -37,11 +38,13 @@
             for ( i in userList) {
                 var table = document.getElementById("myTable");
                 var row1 = table.insertRow(1);
-                var cell1User = row1.insertCell(0);
-                var cell2Roles = row1.insertCell(1);
+                var cell1Id = row1.insertCell(0);
+                var cell2User = row1.insertCell(1);
+                var cell3Roles = row1.insertCell(2);
 
-                cell1User.innerHTML = userList[i].name;
-                cell2Roles.innerHTML= userList[i].location;
+                cell1Id.innerHTML = userList[i].id;
+                cell2User.innerHTML = userList[i].name;
+                cell3Roles.innerHTML= userList[i].role;
             }
         });
     }</script>
