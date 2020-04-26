@@ -625,7 +625,7 @@ public class DAO implements IDAO {
         ArrayList<IUserDTO> users = new ArrayList<IUserDTO>();
         try {
 
-            String query = "SELECT * FROM cdio.User";
+            String query = "SELECT * FROM cdio.User ORDER BY Username DESC";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
             IUserDTO user;
@@ -672,7 +672,7 @@ public class DAO implements IDAO {
         ArrayList<IItemDTO> items = new ArrayList<IItemDTO>();
         try {
 
-            String query = "SELECT * FROM cdio.item";
+            String query = "SELECT * FROM cdio.item ORDER BY ItemName DESC";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
             IItemDTO item;
@@ -695,7 +695,7 @@ public class DAO implements IDAO {
         ArrayList<IGroupDTO> groups = new ArrayList<IGroupDTO>();
         try {
 
-            String query = "SELECT * FROM cdio.group";
+            String query = "SELECT * FROM cdio.group ORDER BY GroupName DESC";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
             IGroupDTO group;
