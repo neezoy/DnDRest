@@ -25,13 +25,14 @@
                     <th>Location</th>
                 </tr>
             </table>
-        <button onclick="insertTable()">jdksa</button>
+        <button onclick="switchPage('AllCharacters.html'); insertTable();" >Update table</button>
 
         <script> function insertTable(){
-            console.log("jdskajkdsada")
             var characterList;
             $.get("http://localhost:8080/rest/character/all", function(data){
                 characterList = data;
+                console.log("wow");
+                console.log(characterList);
             for ( i in characterList) {
                 var table = document.getElementById("myTable");
                 var row1 = table.insertRow(1);
@@ -45,7 +46,10 @@
                     alert(event.target.id);
                 })*/
             }
+            }).fail(function () {
+                console.log("Fejl");
             });
+
         }</script>
 
 
