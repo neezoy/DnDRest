@@ -39,9 +39,8 @@ public class ItemService {
 
     @POST
     @Path("save")
-    public Response postItem(@FormParam("itemname") String itemname, @FormParam("description") String description,
-                                  @FormParam("itemid") int itemid, @FormParam("weight") double weight,
-                                  @FormParam("selection") int selection) throws SQLException {
+    public Response postItem(@FormParam("itemname") String itemname, @FormParam("weight") double weight, @FormParam("description") String description,
+                                  @FormParam("itemid") int itemid, @FormParam("selection") int selection) throws SQLException {
 
         // 1 create
         // 2 update

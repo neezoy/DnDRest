@@ -42,7 +42,7 @@ public class UserService {
     @POST
     @Path("save")
     public Response postUser(@FormParam("username") String username,
-                             @FormParam("role") String role,
+                             @FormParam("role") int role,
                              @FormParam("password") String password,
                              @FormParam("userid") int userid,
                              @FormParam("selection") int selection) throws SQLException {
@@ -53,7 +53,7 @@ public class UserService {
 
         IDAO dao = new DAO();
 
-        IUserDTO user = new UserDTO(username, role);
+        IUserDTO user = new UserDTO(username, password);
 
         switch (selection) {
             case 1:
