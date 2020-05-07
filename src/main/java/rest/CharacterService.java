@@ -8,7 +8,6 @@ import database.IDAO;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -20,6 +19,7 @@ public class CharacterService {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("all")
     public ArrayList<ICharacterDTO> getAllCharacter() throws SQLException {
+
         System.out.println("First error");
         try {
             IDAO dao = new DAO();
@@ -30,8 +30,10 @@ public class CharacterService {
             System.out.println(d.size());
             return d;
 
-        } catch(Exception e) {e.printStackTrace();
-            System.out.println("3");}
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("3");
+        }
 
         System.out.println("4 error");
         return null;
@@ -71,7 +73,7 @@ public class CharacterService {
         charac.setLocation(location);
 
 
-        switch (selection){
+        switch (selection) {
             case 1:
                 dao.createCharacter(charac);
                 break;
@@ -88,7 +90,6 @@ public class CharacterService {
         }
 
 
-
         //response is output in this case
         return null;
 
@@ -99,8 +100,8 @@ public class CharacterService {
     @Path("additem/{item}/{character}")
     public Response addItemToCharacter(@PathParam("item") String item, @PathParam("character") String character) {
 
-        String response = "Successfully added item name: "+
-                item +" to character: "+ character;
+        String response = "Successfully added item name: " +
+                item + " to character: " + character;
 
         //response is output in this case
         return Response.status(200).entity(response).build();
@@ -112,14 +113,12 @@ public class CharacterService {
     @Path("addgroup/{group}/{character}")
     public Response addGroupToCharacter(@PathParam("group") String group, @PathParam("character") String character) {
 
-        String response = "Successfully added group name: "+
-                character +" to character: "+ character;
+        String response = "Successfully added group name: " +
+                character + " to character: " + character;
 
         //response is output in this case
         return Response.status(200).entity(response).build();
     }
-
-
 
 
 }
