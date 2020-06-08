@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Master.css">
+
+</head>
+<body>
+<div id = "headerDiv">
+    <h2>D&D</h2>
+    <div id = "headerContainer">
+        <button onclick="switchPage('AllUsers.html');">User</button>
+        <button onclick="switchPage('AllCharacters.html');">Character</button>
+        <button onclick="switchPage('AllItems.html');">Item</button>
+        <button onclick="switchPage('AllGroups.html');">Group</button>
+    </div>
+</div>
+
+    <br>
+
+    <div class="innerBody">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Group name</th>
+                </tr>
+            </table>
+
+    <button onclick="insertTable();">Create row </button>
+
+    <script> function insertTable(){
+        var groupList;
+        $.get("http://localhost:8080/rest/group/all", function(data){
+            groupList = data;
+            for ( i in groupList) {
+                var table = document.getElementById("myTable");
+                var row1 = table.insertRow(1);
+                var cell1Id = row1.insertCell(0);
+                var cell2Name = row1.insertCell(1);
+
+
+                cell1Id.innerHTML = groupList[i].id;
+                cell2Name.innerHTML = groupList[i].name;
+
+            }
+        });
+    }</script>
+
+    <form action="rest/groups/save" method="post">
+        <p>Group name : <input type="text" name="groupname" id="groupname" /></p>
+        <p>Description : <input type="text" name="description" id="description"/></p>
+        <input type="submit" value="Create user" onclick=selecter(1); />
+        <input type="submit" value="Update user" onclick=selecter(2); />
+        <input type="submit" value="Delete user" onclick=selecter(3); />
+        <p><input type="hidden" value="" name="groupid"/></p>
+        <p><input type="hidden" value="" name="selection"/></p>
+    </form>
+
+
+    <form onload="updateTextField()" action="rest/group/search">
+        <p>Group ID <input type="text" name="id" id="id" /></p>
+        <input type="button" onclick=updateTextField(); value="Search"/>
+    </form>
+
+    <script>function updateTextField() {
+        $.get("http://localhost:8080/rest/group/"+id, function(data){
+            document.getElementById("groupname").value = data.groupname;
+            document.getElementById("description").value = data.description;
+            document.getElementById("groupid").value = data.itemid;
+            ;});
+    } </script>
+
+    <script>function selecter(x) {
+        document.getElementById("selection").value = x;
+    } </script>
+
+
+    </div>
+</body>
+</html>
