@@ -18,10 +18,12 @@
                 var cell1Id = row1.insertCell(0);
                 var cell2Name = row1.insertCell(1);
                 var cell3Role = row1.insertCell(2);
+                var cell4Status = row1.insertCell(3);
 
                 cell1Id.innerHTML = userList[i].id;
                 cell2Name.innerHTML = userList[i].name;
                 cell3Role.innerHTML= userList[i].role;
+                cell4Status.innerHTML = userList[i].status;
 
 
             }
@@ -50,6 +52,7 @@
                     <th>Id</th>
                     <th>User name</th>
                     <th>Role</th>
+                    <th>Status</th>
 
                 </thead>
                 <tbody>
@@ -66,9 +69,9 @@
         <p>User name : <input type="text" name="username" id="username" /></p>
         <p>Role : <input type="text" name="role" id="role" /></p>
         <p>Password : <input type="text" name="password" id="password" /></p>
-        <input type="submit" value="Create user" onclick=selecter(1); />
-        <input type="submit" value="Update user" onclick=selecter(2); />
-        <input type="submit" value="Delete user" onclick=selecter(3); />
+        <input type="submit" value="Create" onclick=selecter(1); />
+        <input type="submit" value="Update" onclick=selecter(2); />
+        <input type="submit" value="Delete" onclick=selecter(3); />
         <p><input type="hidden" value="" name="userid" id="userid"/></p>
         <p><input type="hidden" value="" name="selection" id="selection"/></p>
     </form>

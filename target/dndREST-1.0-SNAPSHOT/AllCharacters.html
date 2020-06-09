@@ -19,10 +19,12 @@
                 var cell1Id = row1.insertCell(0);
                 var cell2Name = row1.insertCell(1);
                 var cell3Location = row1.insertCell(2);
+                var cell4Status = row1.insertCell(3);
 
                 cell1Id.innerHTML = characterList[i].id;
                 cell2Name.innerHTML = characterList[i].name;
                 cell3Location.innerHTML= characterList[i].location;
+                cell4Status.innerHTML = characterList[i].status;
 
 
                 /*$(row1).on('click', function(event){
@@ -53,6 +55,7 @@
                     <th>Id</th>
                     <th>Character name</th>
                     <th>Location</th>
+                    <th>Status</th>
 
                 </thead>
                 <tbody>
@@ -80,6 +83,18 @@
             <input type="button" onclick=updateTextField(); value="Search"/>
         </form>
 
+        <form onload="updateTextField()" action="rest/character/pending">
+
+            <input type="button" onclick=Pending(); value="Pending"/>
+        </form>
+
+        <script>function Pending() {
+            $.get("http://localhost:8080/rest/character/"+document.getElementById("id").value, function(data){
+
+            });
+        } </script>
+
+
         <script>function updateTextField() {
             $.get("http://localhost:8080/rest/character/"+document.getElementById("id").value, function(data){
                 document.getElementById("charactername").value = data.name;
@@ -95,6 +110,27 @@
         } </script>
 
         <button onclick="insertTable()">Update table</button>
+
+        <script>function filterPending(){
+            var input, filter, table, tbody, i, txtValue;
+            input = "Status 0";
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            row1 = table.getElementsByTagName("row1");
+
+            for (i = 0; i < row1.length; i++) {
+                tbody = row1[i].getElementsByTagName("tbody")[3];
+                if (tbody) {
+                    txtValue = tbody.textContent || tbody.innerText;
+                    if  (txtValue.toUpperCase().indexOf(filter) >-1) {
+                        row1[i].style.display = "";
+                    } else {
+                        row1[i].style.display = "none";
+                    }
+                }
+            }
+
+        }</script>
 
 
     </div>
