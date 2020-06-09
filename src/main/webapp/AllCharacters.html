@@ -80,6 +80,18 @@
             <input type="button" onclick=updateTextField(); value="Search"/>
         </form>
 
+        <form onload="updateTextField()" action="rest/character/pending">
+
+            <input type="button" onclick=Pending(); value="Pending"/>
+        </form>
+
+        <script>function Pending() {
+            $.get("http://localhost:8080/rest/character/"+document.getElementById("id").value, function(data){
+
+            });
+        } </script>
+
+
         <script>function updateTextField() {
             $.get("http://localhost:8080/rest/character/"+document.getElementById("id").value, function(data){
                 document.getElementById("charactername").value = data.name;
