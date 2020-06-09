@@ -55,6 +55,7 @@
                     <th>Id</th>
                     <th>Character name</th>
                     <th>Location</th>
+                    <th>Status</th>
 
                 </thead>
                 <tbody>
@@ -97,6 +98,27 @@
         } </script>
 
         <button onclick="insertTable()">Update table</button>
+
+        <script>function filterPending(){
+            var input, filter, table, tbody, i, txtValue;
+            input = "Status 0";
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            row1 = table.getElementsByTagName("row1");
+
+            for (i = 0; i < row1.length; i++) {
+                tbody = row1[i].getElementsByTagName("tbody")[3];
+                if (tbody) {
+                    txtValue = tbody.textContent || tbody.innerText;
+                    if  (txtValue.toUpperCase().indexOf(filter) >-1) {
+                        row1[i].style.display = "";
+                    } else {
+                        row1[i].style.display = "none";
+                    }
+                }
+            }
+
+        }</script>
 
 
     </div>
