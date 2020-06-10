@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Master.css">
+  
+</head>
+
+<body>
+<div id = "headerDiv">
+    <h2>D&D</h2>
+    <div id = "headerContainer">
+        <button onclick="switchPage('frontPage.html');">Admin</button>
+        <button onclick="switchPage('frontPage.html');">Game Master</button>
+    </div>
+    <form id="?" method="?" >
+        <input type="button" value="Admin" id="admin" onclick="validate()"/>
+        <input type="button" value="Game Master" id="gm" onclick="validate()"/>
+
+        <label>User Name :</label>
+        <input type="text" name="username" id="username"/>
+        <label>Password :</label>
+        <input type="password" name="password" id="password"/>
+        <input type="button" value="Login" id="submit" onclick="validate()"/>
+    </form>
+    <span><b class="note">Note : </b>For this demo use following username and password.<br/>
+        <b class="valid">Admin User Name : administrator@localhost</b> Password : password<br/>
+         <b class="valid">Gm User Name : gamemaster@localhost</b> Password : password</b>
+    </span>
+
+    <script> function validate(){
+        $.get("http://localhost:8080/rest/?/"+document.getElementById("id").value, function(data){
+    var admin = document.getElementById("admin").value;
+    var gm = document.getElementById("gm").value;
+
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            if ( username == "" && password == ""){
+
+            }
+    });
+
+    } </script>
+
+
+
+
+</div>
+
+</body>
+</html>
