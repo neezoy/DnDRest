@@ -111,6 +111,40 @@
 
         <button onclick="insertTable()">Update table</button>
 
+        <table id="list">
+            <thead>
+            <th>Character's Items</th>
+
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <script>insertList();</script>
+
+        <script> function insertList(){
+            $("#list tbody tr").remove();
+            var itemList;
+            $.get("", function (data) {
+                itemList = data;
+                console.log("wow");
+                console.log(itemList);
+                for (i in itemList) {
+                    var table = document.getElementById("list").getElementsByTagName("tbody");
+                    var row1 = table.insertRow(0);
+                    var cell1Name = row1.insertCell(0);
+
+                    cell1Name.innerHTML = itemList[i].id;
+                }
+
+            }).fail(function () {
+                console.log("Fejl");
+                });
+        }
+
+        </script>
+
         <script>function filterPending(){
             var input, filter, table, tbody, i, txtValue;
             input = "Status 0";
