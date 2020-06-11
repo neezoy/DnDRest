@@ -50,7 +50,7 @@ public class CharacterService {
         String json = ow.writeValueAsString(object);
 
          */
-
+        System.out.println("owow");
         IDAO dao = new DAO();
 
         return dao.getCharacter(id);

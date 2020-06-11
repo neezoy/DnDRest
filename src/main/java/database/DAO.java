@@ -13,6 +13,7 @@ public class DAO implements IDAO {
     private Connection c;
 
     public DAO() {
+        System.out.println("DAO");
         String url = "jdbc:mysql://database-1.chwxwa8nyn1v.eu-central-1.rds.amazonaws.com:3306/cdio?characterEncoding=latin1";
         String username = "master";
         String password = "Password123"; //find det rigtige
