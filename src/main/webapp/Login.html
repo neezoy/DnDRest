@@ -13,31 +13,17 @@
         <button onclick="switchPage('frontPage.html');">Admin</button>
         <button onclick="switchPage('frontPage.html');">Game Master</button>
     </div>
-    <form id="?" method="?" >
-        <input type="button" value="Admin" id="admin" onclick="validate()"/>
-        <input type="button" value="Game Master" id="gm" onclick="validate()"/>
+    <form id="?" action="http://" method="post" >
+        <input type="button" value="Admin" id="admin" onclick="adminValidate()"/>
+        <input type="button" value="Game Master" id="gm" onclick=""/>
 
-        <label>User Name :</label>
-        <input type="text" name="username" id="username"/>
-        <label>Password :</label>
-        <input type="password" name="password" id="password"/>
-        <input type="button" value="Login" id="submit" onclick="validate()"/>
+
     </form>
-    <span><b class="note">Note : </b>For this demo use following username and password.<br/>
-        <b class="valid">Admin User Name : administrator@localhost</b> Password : password<br/>
-         <b class="valid">Gm User Name : gamemaster@localhost</b> Password : password</b>
-    </span>
 
-    <script> function validate(){
+    <script> function adminValidate(){
         $.get("http://localhost:8080/rest/?/"+document.getElementById("id").value, function(data){
-    var admin = document.getElementById("admin").value;
-    var gm = document.getElementById("gm").value;
+     document.getElementById("admin").value = "";
 
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-            if ( username == "" && password == ""){
-
-            }
     });
 
     } </script>
