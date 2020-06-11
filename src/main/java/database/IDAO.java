@@ -84,4 +84,26 @@ public interface IDAO {
     ArrayList<IItemDTO> getAllItems() throws SQLException;
 
     ArrayList<IGroupDTO> getAllGroups() throws SQLException;
+
+    void approveCharacter(ICharacterDTO character, boolean approval) throws SQLException;
+
+    void approveUser(IUserDTO user, boolean approval) throws SQLException;
+
+    void createSession(ISessionDTO session) throws SQLException;
+
+    ISessionDTO getSession(int sessionid) throws SQLException;
+
+    void overwriteSession(ISessionDTO session) throws SQLException;
+
+    ArrayList getSessionIDs(int characterid) throws SQLException;
+
+    ArrayList getAttendees(int sessionid) throws SQLException;
+
+    void addToSession(ICharacterDTO character, ISessionDTO session) throws SQLException;
+
+    void removeFromSession(ICharacterDTO character, ISessionDTO session) throws SQLException;
+
+    ArrayList getCharacterByStatus(int status) throws SQLException;
+
+    ArrayList getUserByStatus(int status) throws SQLException;
 }

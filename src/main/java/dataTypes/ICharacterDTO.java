@@ -35,7 +35,9 @@ public interface ICharacterDTO {
     void addGroup(IGroupDTO group);
     void removeGroup(IGroupDTO group);
 
-
+    ArrayList<ISessionDTO> getSessionList();
+    void addSession(ISessionDTO session);
+    void removeSession(ISessionDTO session);
 
 
 }
