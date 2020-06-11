@@ -98,4 +98,12 @@ public interface IDAO {
     ArrayList getSessionIDs(int characterid) throws SQLException;
 
     ArrayList getAttendees(int sessionid) throws SQLException;
+
+    void addToSession(ICharacterDTO character, ISessionDTO session) throws SQLException;
+
+    void removeFromSession(ICharacterDTO character, ISessionDTO session) throws SQLException;
+
+    ArrayList getCharacterByStatus(int status) throws SQLException;
+
+    ArrayList getUserByStatus(int status) throws SQLException;
 }

@@ -10,6 +10,7 @@ public class CharacterDTO implements ICharacterDTO {
     private int bonuscapacity;
     private ArrayList<IItemDTO> items = new ArrayList<IItemDTO>();
     private ArrayList<IGroupDTO> groups = new ArrayList<IGroupDTO>();
+    private ArrayList<ISessionDTO> sessions = new ArrayList<ISessionDTO>();
 
     public CharacterDTO(){
     }
@@ -98,5 +99,20 @@ public class CharacterDTO implements ICharacterDTO {
     @Override
     public void removeGroup(IGroupDTO group) {
         groups.remove(group);
+    }
+
+    @Override
+    public ArrayList<ISessionDTO> getSessionList() {
+        return sessions;
+    }
+
+    @Override
+    public void addSession(ISessionDTO session) {
+        sessions.add(session);
+    }
+
+    @Override
+    public void removeSession(ISessionDTO session) {
+        sessions.remove(session);
     }
 }

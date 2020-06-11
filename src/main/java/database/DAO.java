@@ -847,4 +847,88 @@ public class DAO implements IDAO {
         }
         return characterids;
     }
+
+    @Override
+    public void addToSession(ICharacterDTO character, ISessionDTO session) throws SQLException{
+
+        if(session.getCharacters().size() == session.getAmount()) {
+            //TODO Make custom exception
+            throw new SQLException();
+        }
+
+        try {
+
+
+            String query = "INSERT INTO SessionRelation (SessionID, CharacterID) VALUES (?, ?)";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.setInt(1, session.getID());
+            statement.setInt(2, character.getID());
+
+            statement.execute();
+
+
+        } catch (SQLException p) {
+            throw p;
+        }
+
+        session.addCharacter(character);
+        character.addSession(session);
+
+    }
+
+    @Override
+    public void removeFromSession(ICharacterDTO character, ISessionDTO session) throws SQLException {
+        try {
+
+            String query = "DELETE FROM SessionRelation WHERE CharacterID = '" + character.getID() + "' AND SessionID = '" + session.getID()+ "'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.execute();
+
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        character.removeSession(session);
+        session.removeCharacter(character);
+    }
+
+    @Override
+    public ArrayList getCharacterByStatus(int status) throws SQLException {
+        ArrayList characterids = new ArrayList();
+        try {
+            String query = "SELECT CharacterID FROM `Character` WHERE CStatus ='" + status + "'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                characterids.add(result.getInt("CharacterID"));
+            }
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        return characterids;
+    }
+
+    @Override
+    public ArrayList getUserByStatus(int status) throws SQLException {
+        ArrayList userids = new ArrayList();
+        try {
+            String query = "SELECT UserID FROM `User` WHERE UStatus ='" + status + "'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                userids.add(result.getInt("UserID"));
+            }
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        return userids;
+    }
 }
