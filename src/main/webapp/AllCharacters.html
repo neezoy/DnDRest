@@ -85,15 +85,10 @@
         </form>
 
         <form onload="updateTextField()" action="rest/character/pending">
-
-            <input type="button" onclick=Pending(); value="Pending"/>
+            <input type="button" onclick=updateTextField(); value="Pending"/>
         </form>
 
-        <script>function Pending() {
-            $.get("http://localhost:8080/rest/character/"+document.getElementById("id").value, function(data){
 
-            });
-        } </script>
 
 
         <script>function updateTextField() {
