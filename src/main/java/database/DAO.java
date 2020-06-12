@@ -37,7 +37,7 @@ public class DAO implements IDAO {
     @Override
     public void createUser(IUserDTO user) throws SQLException {
         try {
-            String query = "INSERT INTO User (Username, Password, Roles) VALUES (?, ?, ?)";
+            String query = "INSERT INTO cdio.User (Username, Password, Roles) VALUES (?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setString(1, user.getName());
@@ -55,7 +55,7 @@ public class DAO implements IDAO {
     public IUserDTO getUserFromName(String username) throws SQLException {
         IUserDTO user = new UserDTO();
         try {
-            String query = "SELECT * FROM User WHERE Username = ?;";
+            String query = "SELECT * FROM cdio.User WHERE Username = ?;";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, username);
             ResultSet result = statement.executeQuery();
@@ -80,7 +80,7 @@ public class DAO implements IDAO {
     public IUserDTO getUser(int userid) throws SQLException {
         UserDTO user = new UserDTO();
         try {
-            String query = "SELECT * FROM User WHERE UserID = " + userid + ";";
+            String query = "SELECT * FROM cdio.User WHERE UserID = " + userid + ";";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
 
@@ -187,7 +187,7 @@ public class DAO implements IDAO {
     public int getItemID(String itemname) throws SQLException {
         int ID;
         try {
-            String query = "SELECT ItemID FROM Item WHERE ItemName = ?;";
+            String query = "SELECT ItemID FROM cdio.Item WHERE ItemName = ?;";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, itemname);
             ResultSet result = statement.executeQuery();
@@ -210,7 +210,7 @@ public class DAO implements IDAO {
     public IItemDTO getItem(int itemid) throws SQLException {
         IItemDTO item = new ItemDTO();
         try {
-            String query = "SELECT * FROM Item WHERE ItemID = " + itemid + ";";
+            String query = "SELECT * FROM cdio.Item WHERE ItemID = " + itemid + ";";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
 
@@ -296,7 +296,7 @@ public class DAO implements IDAO {
     public void addCharacter(IUserDTO user, ICharacterDTO character) throws SQLException {
         try {
 
-            String query = "INSERT INTO CharacterRelation (CharacterID, UserID) VALUES (?, ?)";
+            String query = "INSERT INTO cdio.CharacterRelation (CharacterID, UserID) VALUES (?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setInt(1, character.getID());
@@ -331,7 +331,7 @@ public class DAO implements IDAO {
         //TODO: I'm not sure about whether we should remove the character from the UserDTO. We probably should, to keep the data consistent.
         try {
 
-            String query = "DELETE FROM CharacterRelation WHERE CharacterID ='" + characterid + "'";
+            String query = "DELETE FROM cdio.CharacterRelation WHERE CharacterID ='" + characterid + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
@@ -345,7 +345,7 @@ public class DAO implements IDAO {
     public ArrayList getCharacterIDs(int userid) throws SQLException {
         ArrayList characterids = new ArrayList();
         try {
-            String query = "SELECT CharacterID FROM CharacterRelation WHERE UserID ='" + userid + "'";
+            String query = "SELECT CharacterID FROM cdio.CharacterRelation WHERE UserID ='" + userid + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();
@@ -364,7 +364,7 @@ public class DAO implements IDAO {
         //TODO make add and remove items check if the item already exists.
         try {
 
-            String query = "INSERT INTO ItemRelation (ItemID, CharacterID, Amount) VALUES (?, ?, ?)";
+            String query = "INSERT INTO cdio.ItemRelation (ItemID, CharacterID, Amount) VALUES (?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setInt(1, itemid);
@@ -382,7 +382,7 @@ public class DAO implements IDAO {
     public void addItems(int characterid, int itemid, int amount) throws SQLException {
         try {
 
-            String query = "INSERT INTO ItemRelation (ItemID, CharacterID, Amount) VALUES (?, ?, ?)";
+            String query = "INSERT INTO cdio.ItemRelation (ItemID, CharacterID, Amount) VALUES (?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setInt(1, itemid);
@@ -401,7 +401,7 @@ public class DAO implements IDAO {
         //TODO how do we delete one.
         try {
 
-            String query = "DELETE FROM ItemRelation WHERE ItemID ='" + itemid + "' AND CharacterID ='" + characterid + "' ";
+            String query = "DELETE FROM cdio.ItemRelation WHERE ItemID ='" + itemid + "' AND CharacterID ='" + characterid + "' ";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
@@ -415,7 +415,7 @@ public class DAO implements IDAO {
     public void removeItems(int characterid, int itemid, int amount) throws SQLException {
         try {
 
-            String query = "DELETE FROM ItemRelation WHERE ItemID ='" + itemid + "' AND CharacterID ='" + characterid + "' ";
+            String query = "DELETE FROM cdio.ItemRelation WHERE ItemID ='" + itemid + "' AND CharacterID ='" + characterid + "' ";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
@@ -429,7 +429,7 @@ public class DAO implements IDAO {
     public ArrayList getItemIDs(int characterid) throws SQLException {
         ArrayList itemids = new ArrayList();
         try {
-            String query = "SELECT ItemID FROM ItemRelation WHERE CharacterID ='" + characterid + "'";
+            String query = "SELECT ItemID FROM cdio.ItemRelation WHERE CharacterID ='" + characterid + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();
@@ -447,7 +447,7 @@ public class DAO implements IDAO {
     public void addToGroup(ICharacterDTO character, IGroupDTO group) throws SQLException {
         try {
 
-            String query = "INSERT INTO GroupRelation (GroupID, CharacterID) VALUES (?, ?)";
+            String query = "INSERT INTO cdio.GroupRelation (GroupID, CharacterID) VALUES (?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setInt(1, group.getID());
@@ -468,7 +468,7 @@ public class DAO implements IDAO {
         //TODO: I'm not sure about whether we should remove the relation from the DTO. We probably should, to keep the data consistent.
         try {
 
-            String query = "DELETE FROM GroupRelation WHERE CharacterID = '" + characterid + "' AND GroupID = '" + groupid + "'";
+            String query = "DELETE FROM cdio.GroupRelation WHERE CharacterID = '" + characterid + "' AND GroupID = '" + groupid + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
@@ -482,7 +482,7 @@ public class DAO implements IDAO {
     public ArrayList getGroupIDs(int characterid) throws SQLException {
         ArrayList groupids = new ArrayList();
         try {
-            String query = "SELECT GroupID FROM GroupRelation WHERE CharacterID ='" + characterid + "'";
+            String query = "SELECT GroupID FROM cdio.GroupRelation WHERE CharacterID ='" + characterid + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();
@@ -500,7 +500,7 @@ public class DAO implements IDAO {
     public ArrayList getMembers(int groupid) throws SQLException {
         ArrayList characterids = new ArrayList();
         try {
-            String query = "SELECT CharacterID FROM GroupRelation WHERE GroupID ='" + groupid + "'";
+            String query = "SELECT CharacterID FROM cdio.GroupRelation WHERE GroupID ='" + groupid + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();
@@ -518,7 +518,7 @@ public class DAO implements IDAO {
     public void deleteUser(int userid) throws SQLException {
         try {
 
-            String query = "DELETE FROM User WHERE UserID ='" + userid + "'";
+            String query = "DELETE FROM cdio.User WHERE UserID ='" + userid + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
@@ -532,7 +532,7 @@ public class DAO implements IDAO {
     public void overwriteUser(IUserDTO user) throws SQLException {
         try {
 
-            String query = "UPDATE User SET Username = ?, Password = ?, Roles = ? WHERE UserID = '" + user.getID() + "'";
+            String query = "UPDATE cdio.User SET Username = ?, Password = ?, Roles = ? WHERE UserID = '" + user.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, user.getName());
             statement.setString(2, user.getPassword());
@@ -583,7 +583,7 @@ public class DAO implements IDAO {
     @Override
     public void deleteItem(int itemid) throws SQLException {
         try {
-            String query = "DELETE FROM Item WHERE ItemID ='" + itemid + "'";
+            String query = "DELETE FROM cdio.Item WHERE ItemID ='" + itemid + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
@@ -717,7 +717,7 @@ public class DAO implements IDAO {
     public void approveCharacter(ICharacterDTO character, boolean approval) throws SQLException{
         try {
 
-            String query = "UPDATE `Character` SET CStatus = ? WHERE characterid = '" + character.getID() + "'";
+            String query = "UPDATE cdio.Character SET CStatus = ? WHERE characterid = '" + character.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             if(approval) {
                 statement.setInt(1, 1);
@@ -736,7 +736,7 @@ public class DAO implements IDAO {
     public void approveUser(IUserDTO user, boolean approval) throws SQLException{
         try {
 
-            String query = "UPDATE `User` SET UStatus = ? WHERE userid = '" + user.getID() + "'";
+            String query = "UPDATE cdio.User SET UStatus = ? WHERE userid = '" + user.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             if(approval) {
                 statement.setInt(1, 1);
@@ -796,7 +796,7 @@ public class DAO implements IDAO {
     @Override
     public void overwriteSession(ISessionDTO session) throws SQLException {
         try {
-            String query = "UPDATE Cdio.Session SET `Date` = ?, SLocation = ?, Amount = ? WHERE SessionID = '" + session.getID() + "'";
+            String query = "UPDATE cdio.Session SET `Date` = ?, SLocation = ?, Amount = ? WHERE SessionID = '" + session.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, session.getDate());
             statement.setString(2, session.getLocation());
@@ -814,7 +814,7 @@ public class DAO implements IDAO {
     public ArrayList getSessionIDs(int characterid) throws SQLException {
         ArrayList sessionids = new ArrayList();
         try {
-            String query = "SELECT SessionID FROM SessionRelation WHERE CharacterID ='" + characterid + "'";
+            String query = "SELECT SessionID FROM cdio.SessionRelation WHERE CharacterID ='" + characterid + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();
@@ -833,7 +833,7 @@ public class DAO implements IDAO {
     public ArrayList getAttendees(int sessionid) throws SQLException {
         ArrayList characterids = new ArrayList();
         try {
-            String query = "SELECT CharacterID FROM SessionRelation WHERE SessionID ='" + sessionid + "'";
+            String query = "SELECT CharacterID FROM cdio.SessionRelation WHERE SessionID ='" + sessionid + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();
@@ -859,7 +859,7 @@ public class DAO implements IDAO {
         try {
 
 
-            String query = "INSERT INTO SessionRelation (SessionID, CharacterID) VALUES (?, ?)";
+            String query = "INSERT INTO cdio.SessionRelation (SessionID, CharacterID) VALUES (?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setInt(1, session.getID());
@@ -881,7 +881,7 @@ public class DAO implements IDAO {
     public void removeFromSession(ICharacterDTO character, ISessionDTO session) throws SQLException {
         try {
 
-            String query = "DELETE FROM SessionRelation WHERE CharacterID = '" + character.getID() + "' AND SessionID = '" + session.getID()+ "'";
+            String query = "DELETE FROM cdio.SessionRelation WHERE CharacterID = '" + character.getID() + "' AND SessionID = '" + session.getID()+ "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
@@ -898,7 +898,7 @@ public class DAO implements IDAO {
     public ArrayList getCharacterByStatus(int status) throws SQLException {
         ArrayList characterids = new ArrayList();
         try {
-            String query = "SELECT CharacterID FROM `Character` WHERE CStatus ='" + status + "'";
+            String query = "SELECT CharacterID FROM cdio.Character WHERE CStatus ='" + status + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();
@@ -917,7 +917,7 @@ public class DAO implements IDAO {
     public ArrayList getUserByStatus(int status) throws SQLException {
         ArrayList userids = new ArrayList();
         try {
-            String query = "SELECT UserID FROM `User` WHERE UStatus ='" + status + "'";
+            String query = "SELECT UserID FROM cdio.User WHERE UStatus ='" + status + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();
