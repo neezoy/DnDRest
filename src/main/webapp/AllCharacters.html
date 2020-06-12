@@ -85,9 +85,15 @@
         </form>
 
         <form onload="updateTextField()" action="rest/character/approved">
-            <input type="button" onclick=updateTextField(); value="Approved"/>
+            <input type="button" onclick=approved(); value="Approved"/>
         </form>
 
+        <script>function approved() {
+            $.put("http://localhost:8080/rest/character/"+document.getElementById("id").value, function(data){
+                document.getElementById("status").value = data.status;
+                document.getElementById("characterid").value = document.getElementById("id").value;
+            });
+        } </script>
 
 
 
