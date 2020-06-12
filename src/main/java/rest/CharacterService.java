@@ -2,6 +2,7 @@ package rest;
 
 import dataTypes.CharacterDTO;
 import dataTypes.ICharacterDTO;
+import dataTypes.IItemDTO;
 import database.DAO;
 import database.IDAO;
 
@@ -13,6 +14,28 @@ import java.util.ArrayList;
 
 @Path("character")
 public class CharacterService {
+
+
+
+    @POST
+    @Path("approve/{id}/{approval}")
+    public Response approveCharacter(@PathParam("id") int id, @PathParam("approval") boolean approval) throws SQLException {
+
+        String response = "Successfully approved name: " +
+                id;
+
+        IDAO dao = new DAO();
+
+        ICharacterDTO a = dao.getCharacter(id);
+        dao.approveCharacter(a, approval);
+
+        //response is output in this case
+        return Response.status(200).entity(response).build();
+
+    }
+
+
+
 
 
     @GET
