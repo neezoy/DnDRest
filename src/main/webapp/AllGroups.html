@@ -30,9 +30,12 @@
 
 
     <script> function insertTable(){
+        $("#myTable tbody tr").remove();
         var groupList;
         $.get("http://localhost:8080/rest/group/all", function(data){
             groupList = data;
+            console.log("insertTable virker i groups");
+            console.log(groupList);
             for ( i in groupList) {
                 var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
                 var row1 = table.insertRow(1);
@@ -44,6 +47,8 @@
                 cell2Name.innerHTML = groupList[i].name;
 
             }
+        }).fail(function () {
+            console.log("Fejl i insertTable i group");
         });
     }</script>
 
@@ -86,14 +91,13 @@
             </tbody>
         </table>
 
-        <script>insertList();</script>
 
         <script> function insertList(){
             $("#list tbody tr").remove();
             var characterList;
             $.get("http://localhost:8080/rest/character/all", function (data) {
                 characterList = data;
-                console.log("wow");
+                console.log("insertList i groups virker");
                 console.log(characterList);
                 for (i in characterList) {
                     var table = document.getElementById("list").getElementsByTagName("tbody");
@@ -104,11 +108,11 @@
                 }
 
             }).fail(function () {
-                console.log("Fejl");
+                console.log("Fejl i insertList på groups");
             });
         }
 
-        </script>
+        insertList();</script>
 
 
     </div>

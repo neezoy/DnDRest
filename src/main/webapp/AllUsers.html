@@ -10,7 +10,7 @@
         var userList;
         $.get("http://localhost:8080/rest/user/all", function(data){
             userList = data;
-            console.log("wow");
+            console.log("insertTable virker i users");
             console.log(userList);
             for ( i in userList) {
                 var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
@@ -28,6 +28,7 @@
 
             }
         }).fail(function () {
+            console.log("Fejl i insertTable i users");
         });
 
     }</script>
@@ -106,14 +107,13 @@
             </tbody>
         </table>
 
-        <script>insertList();</script>
 
         <script> function insertList(){
             $("#list tbody tr").remove();
             var characterList;
             $.get("http://localhost:8080/rest/character/all", function (data) {
                 characterList = data;
-                console.log("wow");
+                console.log("insertList i users virker");
                 console.log(characterList);
                 for (i in characterList) {
                     var table = document.getElementById("list").getElementsByTagName("tbody");
@@ -124,11 +124,11 @@
                 }
 
             }).fail(function () {
-                console.log("Fejl");
+                console.log("Fejl i insertList på user");
             });
         }
 
-        </script>
+        insertList();</script>
 
         <script>function filterPending(){
             var input, filter, table, tbody, i, txtValue;
