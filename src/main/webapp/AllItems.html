@@ -4,42 +4,17 @@
 
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="Master.css">
+    <script type="text/javascript" src="jquery-3.4.1.js"></script>
 
-</head>
-<body onload="insertTable();">
-<div id = "headerDiv">
-    <h2>D&D</h2>
-    <div id = "headerContainer">
-        <button onclick="switchPage('AllUsers.html');">User</button>
-        <button onclick="switchPage('AllCharacters.html');">Character</button>
-        <button onclick="switchPage('AllItems.html');">Item</button>
-        <button onclick="switchPage('AllGroups.html');">Group</button>
-    </div>
-</div>
-
-    <br>
-
-    <div class="innerBody">
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Item name</th>
-                    <th>Weight</th>
-                </tr>
-            </table>
-
-
-
-    <script> function insertTable(){
+    <script> function insertTable() {
         $("#myTable tbody tr").remove();
         var itemList;
-        $.get("http://localhost:8080/rest/item/all", function(data){
+        $.get("http://localhost:8080/rest/item/all", function (data) {
             itemList = data;
             console.log("insertTable virker i items");
-            console.log(itemList);
-            for ( i in itemList) {
+            for (i in itemList) {
                 var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
-                var row1 = table.insertRow(1);
+                var row1 = table.insertRow(0);
                 var cell1Id = row1.insertCell(0);
                 var cell2Name = row1.insertCell(1);
                 var cell3weight = row1.insertCell(2);
@@ -53,73 +28,102 @@
         });
     }</script>
 
+</head>
+<body onload="insertTable();">
+<div id="headerDiv">
+    <h2>D&D</h2>
+    <div id="headerContainer">
+        <button onclick="switchPage('AllUsers.html');">User</button>
+        <button onclick="switchPage('AllCharacters.html');">Character</button>
+        <button onclick="switchPage('AllItems.html');">Item</button>
+        <button onclick="switchPage('AllGroups.html');">Group</button>
+    </div>
+</div>
+
+<br>
+
+<div class="innerBody">
+    <table id="myTable">
+        <thead>
+        <th>Id</th>
+        <th>Item name</th>
+        <th>Weight</th>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script>insertTable();</script>
+
 
     <form action="rest/item/save" method="post">
-        <p>Item name  <input type="text" name="itemname" id="itemname" /></p>
-        <p>Item weight  <input type="text" name="weight" id="weight" /></p>
-        <p>Description  <input type="text" name="description" id="description" /></p>
-        <input type="submit" value="Create" onclick=selecter(1); />
-        <input type="submit" value="Update" onclick=selecter(2); />
-        <input type="submit" value="Delete" onclick=selecter(3); />
+        <p>Item name <input type="text" name="itemname" id="itemname"/></p>
+        <p>Item weight <input type="text" name="weight" id="weight"/></p>
+        <p>Description <input type="text" name="description" id="description"/></p>
+        <input type="submit" value="Create" onclick=selecter(1);/>
+        <input type="submit" value="Update" onclick=selecter(2);/>
+        <input type="submit" value="Delete" onclick=selecter(3);/>
         <p><input type="hidden" value="" name="itemid"/></p>
         <p><input type="hidden" value="" name="selection"/></p>
     </form>
 
 
     <form onload="updateTextField()" action="rest/item/search">
-        <p>Item ID <input type="text" name="id" id="id" /></p>
+        <p>Item ID <input type="text" name="id" id="id"/></p>
         <input type="button" onclick=updateTextField(); value="Search"/>
     </form>
 
     <script>function updateTextField() {
-        $.get("http://localhost:8080/rest/item/"+document.getElementById("id").value, function(data){
+        $.get("http://localhost:8080/rest/item/" + document.getElementById("id").value, function (data) {
             document.getElementById("itemname").value = data.itemname;
             document.getElementById("weight").value = data.weight;
             document.getElementById("description").value = data.description;
             document.getElementById("itemid").value = document.getElementById("itemid").value;
-            ;});
+        });
     } </script>
 
     <script>function selecter(x) {
         document.getElementById("selection").value = x;
     } </script>
 
+    <button onclick="insertTable()">Update table</button>
 
-        <table id="list">
-            <thead>
-            <th>Characters owning the item </th>
+    <table id="list">
+        <thead>
+        <th>Characters owning the item</th>
 
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 
 
+    <script> function insertList() {
+        $("#list tbody tr").remove();
+        var characterList;
+        $.get("http://localhost:8080/rest/character/all", function (data) {
+            characterList = data;
+            console.log("insertList i items virker");
+            console.log(characterList);
+            for (i in characterList) {
+                var table = document.getElementById("list").getElementsByTagName("tbody");
+                var row1 = table.insertRow(0);
+                var cell1Name = row1.insertCell(0);
 
-        <script> function insertList(){
-            $("#list tbody tr").remove();
-            var characterList;
-            $.get("http://localhost:8080/rest/character/all", function (data) {
-                characterList = data;
-                console.log("insertList i items virker");
-                console.log(characterList);
-                for (i in characterList) {
-                    var table = document.getElementById("list").getElementsByTagName("tbody");
-                    var row1 = table.insertRow(0);
-                    var cell1Name = row1.insertCell(0);
+                cell1Name.innerHTML = characterList[i].id;
+            }
 
-                    cell1Name.innerHTML = characterList[i].id;
-                }
+        }).fail(function () {
+            console.log("Fejl i insertList på items");
+        });
+    }
 
-            }).fail(function () {
-                console.log("Fejl i insertList på items");
-            });
-        }
+    insertList();</script>
 
-        insertList();</script>
-
-    </div>
+</div>
 
 </body>
 </html>

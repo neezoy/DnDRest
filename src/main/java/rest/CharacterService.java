@@ -43,10 +43,10 @@ public class CharacterService {
     @Path("all")
     public ArrayList<ICharacterDTO> getAllCharacter() throws SQLException {
 
-        System.out.println("First error");
+        System.out.println("Enter CharacterService, getAllCharacter)");
         try {
             IDAO dao = new DAO();
-            System.out.println("2 error");
+            System.out.println("Enter try catch (CharacterService, getAllCharacter)");
 
             ArrayList<ICharacterDTO> d = dao.getAllCharacters();
 
@@ -55,10 +55,10 @@ public class CharacterService {
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("3");
+            System.out.println("Got caught in the catch clause (CharacterService, getAllCharacter)");
         }
 
-        System.out.println("4 error");
+        System.out.println("Success (CharacterService, getAllCharacter)");
         return null;
     }
 
