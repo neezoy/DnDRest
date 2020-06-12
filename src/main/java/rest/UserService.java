@@ -1,9 +1,6 @@
 package rest;
 
-import dataTypes.GroupDTO;
-import dataTypes.IGroupDTO;
-import dataTypes.IUserDTO;
-import dataTypes.UserDTO;
+import dataTypes.*;
 import database.DAO;
 import database.IDAO;
 
@@ -15,6 +12,25 @@ import java.util.ArrayList;
 
 @Path("user")
 public class UserService {
+
+
+
+    @POST
+    @Path("approve/{id}/{approval}")
+    public Response approveUser(@PathParam("id") int id, @PathParam("approval") boolean approval) throws SQLException {
+
+        String response = "Successfully approved name: " +
+                id;
+
+        IDAO dao = new DAO();
+
+        IUserDTO a = dao.getUser(id);
+        dao.approveUser(a, approval);
+
+        //response is output in this case
+        return Response.status(200).entity(response).build();
+
+    }
 
     @GET
     @Path("{id}")

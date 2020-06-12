@@ -1,5 +1,7 @@
 package rest;
 
+import dataTypes.ICharacterDTO;
+import dataTypes.IGroupDTO;
 import dataTypes.IItemDTO;
 import database.DAO;
 import database.IDAO;
@@ -41,42 +43,65 @@ public class RelationsService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("usercharacters/{id}")
-    public ArrayList<IItemDTO> getUserCharacters(@PathParam("id") int id) throws SQLException {
+    public ArrayList<ICharacterDTO> getUserCharacters(@PathParam("id") int id) throws SQLException {
 
         IDAO dao = new DAO();
 
-        //get item id's
-        ArrayList a = dao.getItemIDs(id);
+        //get id's
+        ArrayList a = dao.getCharacterIDs(id);
 
-        //get items in list
+        //get in list
 
-        ArrayList<IItemDTO> b = new ArrayList<>();
+        ArrayList<ICharacterDTO> b = new ArrayList<>();
         for (int i = 0; i < a.size(); i++){
             int c = (int) a.get(i);
-            b.add(dao.getItem(c));
+            b.add(dao.getCharacter(c));
         }
 
 
-        return b ;
+        return b;
 
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("charactergroups/{id}")
-    public ArrayList<IItemDTO> getCharacterGroups(@PathParam("id") int id) throws SQLException {
+    public ArrayList<IGroupDTO> getCharacterGroups(@PathParam("id") int id) throws SQLException {
 
         IDAO dao = new DAO();
 
-        //get item id's
-        ArrayList a = dao.getItemIDs(id);
+        //get id's
+        ArrayList a = dao.getGroupIDs(id);
 
         //get items in list
 
-        ArrayList<IItemDTO> b = new ArrayList<>();
+        ArrayList<IGroupDTO> b = new ArrayList<>();
         for (int i = 0; i < a.size(); i++){
             int c = (int) a.get(i);
-            b.add(dao.getItem(c));
+            b.add(dao.getGroup(c));
+        }
+
+
+        return b;
+
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("groupcharacters/{id}")
+    public ArrayList<ICharacterDTO> getGroupCharacters(@PathParam("id") int id) throws SQLException {
+
+        IDAO dao = new DAO();
+
+        //get id's
+        ArrayList a = dao.getMembers(id);
+
+        //get items in list
+
+        ArrayList<ICharacterDTO> b = new ArrayList<>();
+        for (int i = 0; i < a.size(); i++){
+            int c = (int) a.get(i);
+            b.add(dao.getCharacter(c));
         }
 
 
