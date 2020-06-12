@@ -84,14 +84,14 @@
             <input type="button" onclick=updateTextField(); value="Search"/>
         </form>
 
-        <form onload="updateTextField()" action="rest/character/approved">
-            <input type="button" onclick=approved(); value="Approved"/>
+        <form action="rest/character/approve/{id}/{approval}/" method="post">
+            <p>Character ID <input type="text" name="id1" id="id1"  /></p>
+            <input type="submit" value="Approved" onclick="approved()"/>
         </form>
 
         <script>function approved() {
-            $.put("http://localhost:8080/rest/character/"+document.getElementById("id").value, function(data){
-                document.getElementById("status").value = data.status;
-                document.getElementById("characterid").value = document.getElementById("id").value;
+            $.get("http://localhost:8080/rest/character/"+document.getElementById("id1").value, function(data){
+                document.getElementById("status").value = document.getElementById("approval").value;
             });
         } </script>
 
