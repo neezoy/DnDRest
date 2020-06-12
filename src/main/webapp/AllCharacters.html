@@ -157,7 +157,7 @@
     <script> function insertList2() {
         $("#list tbody tr").remove();
         var groupList;
-        $.get("http://localhost:8080/rest/group/all", function (data) {
+        $.get("http://localhost:8080/rest/relation/charactergroups/"+document.getElementById("id").value, function (data) {
             itemList = data;
             console.log("insertList i chars virker");
             console.log(groupList);

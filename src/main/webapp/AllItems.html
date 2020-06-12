@@ -104,7 +104,7 @@
     <script> function insertList() {
         $("#list tbody tr").remove();
         var characterList;
-        $.get("http://localhost:8080/rest/character/all", function (data) {
+        $.get("http://localhost:8080/rest/relation/characteritems/"+document.getElementById("id").value, function (data) {
             characterList = data;
             console.log("insertList i items virker");
             console.log(characterList);
