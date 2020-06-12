@@ -2,6 +2,7 @@ package rest;
 
 import dataTypes.CharacterDTO;
 import dataTypes.ICharacterDTO;
+import dataTypes.IItemDTO;
 import database.DAO;
 import database.IDAO;
 
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 
 @Path("character")
 public class CharacterService {
+
+
 
 
     @GET
