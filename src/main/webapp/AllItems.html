@@ -31,9 +31,12 @@
 
 
     <script> function insertTable(){
+        $("#myTable tbody tr").remove();
         var itemList;
         $.get("http://localhost:8080/rest/item/all", function(data){
             itemList = data;
+            console.log("insertTable virker i items");
+            console.log(itemList);
             for ( i in itemList) {
                 var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
                 var row1 = table.insertRow(1);
@@ -45,6 +48,8 @@
                 cell2Name.innerHTML = itemList[i].name;
                 cell3weight.innerHTML = itemList[i].weight;
             }
+        }).fail(function () {
+            console.log("Fejl i insertTable i items");
         });
     }</script>
 
@@ -90,14 +95,14 @@
             </tbody>
         </table>
 
-        <script>insertList();</script>
+
 
         <script> function insertList(){
             $("#list tbody tr").remove();
             var characterList;
             $.get("http://localhost:8080/rest/character/all", function (data) {
                 characterList = data;
-                console.log("wow");
+                console.log("insertList i items virker");
                 console.log(characterList);
                 for (i in characterList) {
                     var table = document.getElementById("list").getElementsByTagName("tbody");
@@ -108,11 +113,11 @@
                 }
 
             }).fail(function () {
-                console.log("Fejl");
+                console.log("Fejl i insertList på items");
             });
         }
 
-        </script>
+        insertList();</script>
 
     </div>
 
