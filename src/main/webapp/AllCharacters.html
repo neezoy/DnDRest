@@ -128,7 +128,7 @@
         <script> function insertList(){
             $("#list tbody tr").remove();
             var itemList;
-            $.get("http://localhost:8080/rest/item/all", function (data) {
+            $.get("http://localhost:8080/rest/relation/characteritems/"+document.getElementById("id").value, function (data) {
                 itemList = data;
                 console.log("wow");
                 console.log(itemList);
