@@ -11,7 +11,7 @@
         var characterList;
         $.get("http://localhost:8080/rest/character/all", function(data){
             characterList = data;
-            console.log("wow");
+            console.log("insertTable virker i chars");
             console.log(characterList);
             for ( i in characterList) {
                 var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
@@ -32,7 +32,7 @@
                 })*/
             }
         }).fail(function () {
-            console.log("Fejl");
+            console.log("Fejl i insertTable i char");
         });
 
     }</script>
@@ -117,7 +117,7 @@
             </tbody>
         </table>
 
-        <script>insertList();</script>
+
 
         <script> function insertList(){
             $("#list tbody tr").remove();
@@ -135,11 +135,13 @@
                 }
 
             }).fail(function () {
-                console.log("Fejl");
+                console.log("Fejl i insertList på char");
                 });
         }
 
-        </script>
+        insertList();</script>
+
+
 
         <table id="list2">
             <thead>
@@ -151,14 +153,14 @@
             </tbody>
         </table>
 
-        <script>insertList2();</script>
+
 
         <script> function insertList2(){
             $("#list tbody tr").remove();
             var groupList;
             $.get("http://localhost:8080/rest/group/all", function (data) {
                 itemList = data;
-                console.log("wow");
+                console.log("insertList i chars virker");
                 console.log(groupList);
                 for (i in groupList) {
                     var table = document.getElementById("list").getElementsByTagName("tbody");
@@ -169,11 +171,12 @@
                 }
 
             }).fail(function () {
-                console.log("Fejl");
+                console.log("Fejl i insertList2 på char");
             });
         }
 
-        </script>
+        insertList2();</script>
+        
 
         <script>function filterPending(){
             var input, filter, table, tbody, i, txtValue;
