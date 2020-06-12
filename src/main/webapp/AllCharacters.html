@@ -6,14 +6,13 @@
     <link rel="stylesheet" type="text/css" href="Master.css">
     <script type="text/javascript" src="jquery-3.4.1.js"></script>
 
-    <script> function insertTable(){
+    <script> function insertTable() {
         $("#myTable tbody tr").remove();
         var characterList;
-        $.get("http://localhost:8080/rest/character/all", function(data){
+        $.get("http://localhost:8080/rest/character/all", function (data) {
             characterList = data;
             console.log("insertTable virker i chars");
-            console.log(characterList);
-            for ( i in characterList) {
+            for (i in characterList) {
                 var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
                 var row1 = table.insertRow(0);
                 var cell1Id = row1.insertCell(0);
@@ -23,189 +22,182 @@
 
                 cell1Id.innerHTML = characterList[i].id;
                 cell2Name.innerHTML = characterList[i].name;
-                cell3Location.innerHTML= characterList[i].location;
+                cell3Location.innerHTML = characterList[i].location;
                 cell4Status.innerHTML = characterList[i].status;
-
-
-                /*$(row1).on('click', function(event){
-                    alert(event.target.id);
-                })*/
             }
         }).fail(function () {
             console.log("Fejl i insertTable i char");
         });
-
     }</script>
+
+
 </head>
 <body onload="insertTable();">
-<div id = "headerDiv">
+<div id="headerDiv">
     <h2>D&D</h2>
-    <div id = "headerContainer">
+    <div id="headerContainer">
         <button onclick="switchPage('AllUsers.html');">User</button>
         <button onclick="switchPage('AllCharacters.html');">Character</button>
         <button onclick="switchPage('AllItems.html');">Item</button>
-        <button onclick="switchPage('AllGroups.html')">Group</button>
+        <button onclick="switchPage('AllGroups.html');">Group</button>
     </div>
 </div>
 
-    <br>
-    <div class="innerBody">
-            <table id="myTable">
-                <thead>
-                    <th>Id</th>
-                    <th>Character name</th>
-                    <th>Location</th>
-                    <th>Status</th>
+<br>
 
-                </thead>
-                <tbody>
+<div class="innerBody">
+    <table id="myTable">
+        <thead>
+        <th>Id</th>
+        <th>Character name</th>
+        <th>Location</th>
+        <th>Status</th>
 
-                </tbody>
-            </table>
+        </thead>
+        <tbody>
 
-        <script>insertTable();</script>
+        </tbody>
+    </table>
 
-
-        <form action="rest/character/save/" method="post" >
-            <p>Character name  <input type="text" name="charactername" id="charactername"/></p>
-            <p>Location  <input type="text" name="location" id="location"/></p>
-            <p>Strength <input type="text" name="strength" id="strength" /></p>
-            <p>Bonus Capacity  <input type="text" name="bonus" id="bonus"/></p>
-            <p>Status <input type="text" name="status" id="status"/></p>
-            <input type="submit" value="Create" onclick=selecter(1);  />
-            <input type="submit" value="Update" onclick=selecter(2); />
-            <input type="submit" value="Delete" onclick=selecter(3); />
-            <p><input type="hidden" value="" name="characterid" id="characterid"/></p>
-            <p><input type="hidden" value="" name="selection" id="selection" /></p>
-        </form>
-
-        <form onload="updateTextField()" action="rest/character/search">
-            <p>Character ID <input type="text" name="id" id="id"  /></p>
-            <input type="button" onclick=updateTextField(); value="Search"/>
-        </form>
-
-        <form onload="updateTextField()" action="rest/character/approved">
-            <input type="button" onclick=approved(); value="Approved"/>
-        </form>
-
-        <script>function approved() {
-            $.put("http://localhost:8080/rest/character/"+document.getElementById("id").value, function(data){
-                document.getElementById("status").value = data.status;
-                document.getElementById("characterid").value = document.getElementById("id").value;
-            });
-        } </script>
+    <script>insertTable();</script>
 
 
+    <form action="rest/character/save/" method="post">
+        <p>Character name <input type="text" name="charactername" id="charactername"/></p>
+        <p>Location <input type="text" name="location" id="location"/></p>
+        <p>Strength <input type="text" name="strength" id="strength"/></p>
+        <p>Bonus Capacity <input type="text" name="bonus" id="bonus"/></p>
+        <p>Status <input type="text" name="status" id="status"/></p>
+        <input type="submit" value="Create" onclick=selecter(1);/>
+        <input type="submit" value="Update" onclick=selecter(2);/>
+        <input type="submit" value="Delete" onclick=selecter(3);/>
+        <p><input type="hidden" value="" name="characterid" id="characterid"/></p>
+        <p><input type="hidden" value="" name="selection" id="selection"/></p>
+    </form>
 
-        <script>function updateTextField() {
-            $.get("http://localhost:8080/rest/character/"+document.getElementById("id").value, function(data){
-                document.getElementById("charactername").value = data.name;
-                document.getElementById("location").value = data.location;
-                document.getElementById("strength").value = data.strength;
-                document.getElementById("bonus").value = data.bonus;
-                document.getElementById("characterid").value = document.getElementById("id").value;
-                });
-        } </script>
+    <form onload="updateTextField()" action="rest/character/search">
+        <p>Character ID <input type="text" name="id" id="id"/></p>
+        <input type="button" onclick=updateTextField(); value="Search"/>
+    </form>
 
-        <script>function selecter(x) {
-            document.getElementById("selection").value = x;
-        } </script>
+    <form onload="updateTextField()" action="rest/character/approved">
+        <input type="button" onclick=approved(); value="Approved"/>
+    </form>
 
-        <button onclick="insertTable()">Update table</button>
-
-        <table id="list">
-            <thead>
-            <th>Character's Items</th>
-
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-
-
-
-        <script> function insertList(){
-            $("#list tbody tr").remove();
-            var itemList;
-            $.get("http://localhost:8080/rest/item/all", function (data) {
-                itemList = data;
-                console.log("wow");
-                console.log(itemList);
-                for (i in itemList) {
-                    var table = document.getElementById("list").getElementsByTagName("tbody");
-                    var row1 = table.insertRow(0);
-                    var cell1Name = row1.insertCell(0);
-
-                    cell1Name.innerHTML = itemList[i].id;
-                }
-
-            }).fail(function () {
-                console.log("Fejl i insertList på char");
-                });
-        }
-
-        insertList();</script>
+    <script>function approved() {
+        $.put("http://localhost:8080/rest/character/" + document.getElementById("id").value, function (data) {
+            document.getElementById("status").value = data.status;
+            document.getElementById("characterid").value = document.getElementById("id").value;
+        });
+    } </script>
 
 
+    <script>function updateTextField() {
+        $.get("http://localhost:8080/rest/character/" + document.getElementById("id").value, function (data) {
+            document.getElementById("charactername").value = data.name;
+            document.getElementById("location").value = data.location;
+            document.getElementById("strength").value = data.strength;
+            document.getElementById("bonus").value = data.bonus;
+            document.getElementById("characterid").value = document.getElementById("id").value;
+        });
+    } </script>
 
-        <table id="list2">
-            <thead>
-            <th>Character's Groups</th>
+    <script>function selecter(x) {
+        document.getElementById("selection").value = x;
+    } </script>
 
-            </thead>
-            <tbody>
+    <button onclick="insertTable()">Update table</button>
 
-            </tbody>
-        </table>
+    <table id="list">
+        <thead>
+        <th>Character's Items</th>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
 
 
+    <script> function insertList() {
+        $("#list tbody tr").remove();
+        var itemList;
+        $.get("http://localhost:8080/rest/item/all", function (data) {
+            itemList = data;
+            console.log("wow");
+            console.log(itemList);
+            for (i in itemList) {
+                var table = document.getElementById("list").getElementsByTagName("tbody");
+                var row1 = table.insertRow(0);
+                var cell1Name = row1.insertCell(0);
 
-        <script> function insertList2(){
-            $("#list tbody tr").remove();
-            var groupList;
-            $.get("http://localhost:8080/rest/group/all", function (data) {
-                itemList = data;
-                console.log("insertList i chars virker");
-                console.log(groupList);
-                for (i in groupList) {
-                    var table = document.getElementById("list").getElementsByTagName("tbody");
-                    var row1 = table.insertRow(0);
-                    var cell1Name = row1.insertCell(0);
-
-                    cell1Name.innerHTML = groupList[i].id;
-                }
-
-            }).fail(function () {
-                console.log("Fejl i insertList2 på char");
-            });
-        }
-
-        insertList2();</script>
-        
-
-        <script>function filterPending(){
-            var input, filter, table, tbody, i, txtValue;
-            input = "Status 0";
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            row1 = table.getElementsByTagName("row1");
-
-            for (i = 0; i < row1.length; i++) {
-                tbody = row1[i].getElementsByTagName("tbody")[3];
-                if (tbody) {
-                    txtValue = tbody.textContent || tbody.innerText;
-                    if  (txtValue.toUpperCase().indexOf(filter) >-1) {
-                        row1[i].style.display = "";
-                    } else {
-                        row1[i].style.display = "none";
-                    }
-                }
+                cell1Name.innerHTML = itemList[i].id;
             }
 
-        }</script>
+        }).fail(function () {
+            console.log("Fejl i insertList på char");
+        });
+    }
+
+    insertList();</script>
 
 
-    </div>
+    <table id="list2">
+        <thead>
+        <th>Character's Groups</th>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
+    <script> function insertList2() {
+        $("#list tbody tr").remove();
+        var groupList;
+        $.get("http://localhost:8080/rest/group/all", function (data) {
+            itemList = data;
+            console.log("insertList i chars virker");
+            console.log(groupList);
+            for (i in groupList) {
+                var table = document.getElementById("list").getElementsByTagName("tbody");
+                var row1 = table.insertRow(0);
+                var cell1Name = row1.insertCell(0);
+
+                cell1Name.innerHTML = groupList[i].id;
+            }
+
+        }).fail(function () {
+            console.log("Fejl i insertList2 på char");
+        });
+    }
+
+    insertList2();</script>
+
+
+    <script>function filterPending() {
+        var input, filter, table, tbody, i, txtValue;
+        input = "Status 0";
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        row1 = table.getElementsByTagName("row1");
+
+        for (i = 0; i < row1.length; i++) {
+            tbody = row1[i].getElementsByTagName("tbody")[3];
+            if (tbody) {
+                txtValue = tbody.textContent || tbody.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    row1[i].style.display = "";
+                } else {
+                    row1[i].style.display = "none";
+                }
+            }
+        }
+
+    }</script>
+
+
+</div>
 </body>
 </html>

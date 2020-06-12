@@ -13,7 +13,6 @@ public class DAO implements IDAO {
     private Connection c;
 
     public DAO() {
-        System.out.println("DAO");
         String url = "jdbc:mysql://database-1.chwxwa8nyn1v.eu-central-1.rds.amazonaws.com:3306/cdio?characterEncoding=latin1";
         String username = "master";
         String password = "Password123"; //find det rigtige
@@ -104,7 +103,7 @@ public class DAO implements IDAO {
     public void createCharacter(ICharacterDTO character) throws SQLException {
         try {
 
-            String query = "INSERT INTO cdio.character (CName, CLocation, Strength, BonusCapacity) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO cdio.Character (CName, CLocation, Strength, BonusCapacity) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setString(1, character.getName());
@@ -169,7 +168,7 @@ public class DAO implements IDAO {
     public void createItem(IItemDTO item) throws SQLException {
         try {
 
-            String query = "INSERT INTO Item (ItemName, Weight, Description) VALUES (?, ?, ?)";
+            String query = "INSERT INTO Item (ItemName, Weight, IDescription) VALUES (?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setString(1, item.getName());
@@ -223,7 +222,7 @@ public class DAO implements IDAO {
             item.setID(itemid);
             item.setName(result.getString("ItemName"));
             item.setWeight(result.getDouble("Weight"));
-            item.setDescription(result.getString("Description"));
+            item.setDescription(result.getString("IDescription"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -234,7 +233,7 @@ public class DAO implements IDAO {
     @Override
     public void createGroup(IGroupDTO group) throws SQLException {
         try {
-            String query = "INSERT INTO cdio.Group (GroupName, Description) VALUES (?, ?)";
+            String query = "INSERT INTO cdio.Group (GroupName, GDescription) VALUES (?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setString(1, group.getName());
@@ -284,7 +283,7 @@ public class DAO implements IDAO {
             }
             group.setID(groupid);
             group.setName(result.getString("GroupName"));
-            group.setDescription(result.getString("Description"));
+            group.setDescription(result.getString("GDescription"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -549,7 +548,7 @@ public class DAO implements IDAO {
     public void overwriteCharacter(ICharacterDTO character) throws SQLException {
         try {
 
-            String query = "UPDATE cdio.character SET Cname = ?, CLocation = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '" + character.getID() + "'";
+            String query = "UPDATE cdio.Character SET Cname = ?, CLocation = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '" + character.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, character.getName());
             statement.setString(2, character.getLocation());
@@ -568,7 +567,7 @@ public class DAO implements IDAO {
     public void overwriteItem(IItemDTO item) throws SQLException {
         try {
 
-            String query = "UPDATE Item SET ItemName = ?, Weight = ?, Description = ? WHERE ItemID = '" + item.getID() + "'";
+            String query = "UPDATE cdio.Item SET ItemName = ?, Weight = ?, IDescription = ? WHERE ItemID = '" + item.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, item.getName());
             statement.setDouble(2, item.getWeight());
@@ -597,7 +596,7 @@ public class DAO implements IDAO {
     @Override
     public void overwriteGroup(IGroupDTO group) throws SQLException {
         try {
-            String query = "UPDATE cdio.Group SET GroupName = ?, Description = ? WHERE GroupID = '" + group.getID() + "'";
+            String query = "UPDATE cdio.Group SET GroupName = ?, GDescription = ? WHERE GroupID = '" + group.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, group.getName());
             statement.setString(2, group.getDescription());
@@ -648,7 +647,7 @@ public class DAO implements IDAO {
     public ArrayList<ICharacterDTO> getAllCharacters() throws SQLException{
         ArrayList<ICharacterDTO> characters = new ArrayList<ICharacterDTO>();
         try {
-            String query = "SELECT * FROM cdio.character ORDER BY CName DESC";
+            String query = "SELECT * FROM cdio.Character ORDER BY CName DESC";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
             ICharacterDTO character;
@@ -673,7 +672,7 @@ public class DAO implements IDAO {
         ArrayList<IItemDTO> items = new ArrayList<IItemDTO>();
         try {
 
-            String query = "SELECT * FROM cdio.item ORDER BY ItemName DESC";
+            String query = "SELECT * FROM cdio.Item ORDER BY ItemName DESC";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
             IItemDTO item;
@@ -682,7 +681,7 @@ public class DAO implements IDAO {
                 item.setID(result.getInt("ItemID"));
                 item.setName(result.getString("ItemName"));
                 item.setWeight(result.getDouble("Weight"));
-                item.setDescription(result.getString("Description"));
+                item.setDescription(result.getString("IDescription"));
                 items.add(item);
             }
 
@@ -696,7 +695,7 @@ public class DAO implements IDAO {
         ArrayList<IGroupDTO> groups = new ArrayList<IGroupDTO>();
         try {
 
-            String query = "SELECT * FROM cdio.group ORDER BY GroupName DESC";
+            String query = "SELECT * FROM cdio.Group ORDER BY GroupName DESC";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
             IGroupDTO group;
@@ -704,7 +703,7 @@ public class DAO implements IDAO {
                 group = new GroupDTO();
                 group.setID(result.getInt("GroupID"));
                 group.setName(result.getString("GroupName"));
-                group.setDescription(result.getString("Description"));
+                group.setDescription(result.getString("GDescription"));
                 groups.add(group);
             }
 
