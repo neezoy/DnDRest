@@ -108,6 +108,29 @@
 
     <button onclick="insertTable()">Update table</button>
 
+
+    <script> function insertList(){
+        $("#list tbody tr").remove();
+        var itemList;
+        $.get("http://localhost:8080/rest/relation/characteritems/"+document.getElementById("id").value, function (data) {
+            itemList = data;
+            console.log("insertList i chars virker");
+            console.log(itemList);
+            for (i in itemList) {
+                var table = document.getElementById("list").getElementsByTagName("tbody")[0];
+                var row1 = table.insertRow(0);
+                var cell1Name = row1.insertCell(0);
+
+                cell1Name.innerHTML = itemList[i].name;
+            }
+
+        }).fail(function () {
+            console.log("Fejl i insertList på char");
+        });
+    }
+
+    insertList();</script>
+
     <table id="list">
         <thead>
         <th>Character's Items</th>
@@ -120,28 +143,27 @@
 
 
 
-        <script> function insertList(){
-            $("#list tbody tr").remove();
-            var itemList;
-            $.get("http://localhost:8080/rest/relation/characteritems/"+ document.getElementById("id").value, function (data) {
-                itemList = data;
-                console.log("wow");
-                console.log(itemList);
-                for (i in itemList) {
-                    var table = document.getElementById("list").getElementsByTagName("tbody");
-                    var row1 = table.insertRow(0);
-                    var cell1Name = row1.insertCell(0);
+    <script> function insertList2() {
+        $("#list tbody tr").remove();
+        var groupList;
+        $.get("http://localhost:8080/rest/relation/charactergroups/"+document.getElementById("id").value, function (data) {
+            groupList = data;
+            console.log("insertList2 i chars virker");
+            console.log(groupList);
+            for (i in groupList) {
+                var table = document.getElementById("list").getElementsByTagName("tbody")[0];
+                var row1 = table.insertRow(0);
+                var cell1Name = row1.insertCell(0);
 
-                cell1Name.innerHTML = itemList[i].id;
+                cell1Name.innerHTML = groupList[i].name;
             }
 
         }).fail(function () {
-            console.log("Fejl i insertList på char");
+            console.log("Fejl i insertList2 på char");
         });
     }
 
-    insertList();</script>
-
+    insertList2();</script>
 
     <table id="list2">
         <thead>
@@ -152,30 +174,6 @@
 
         </tbody>
     </table>
-
-
-    <script> function insertList2() {
-        $("#list tbody tr").remove();
-        var groupList;
-        $.get("http://localhost:8080/rest/relation/charactergroups/"+document.getElementById("id").value, function (data) {
-            itemList = data;
-            console.log("insertList2 i chars virker");
-            console.log(groupList);
-            for (i in groupList) {
-                var table = document.getElementById("list").getElementsByTagName("tbody");
-                var row1 = table.insertRow(0);
-                var cell1Name = row1.insertCell(0);
-
-                cell1Name.innerHTML = groupList[i].id;
-            }
-
-        }).fail(function () {
-            console.log("Fejl i insertList2 på char");
-        });
-    }
-
-    insertList2();</script>
-
 
     <script>function filterPending() {
         var input, filter, table, tbody, i, txtValue;
