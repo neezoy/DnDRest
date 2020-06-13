@@ -276,7 +276,6 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
 
-
             if (!result.next()) {
                 return null;
             }
