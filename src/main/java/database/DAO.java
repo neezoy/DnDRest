@@ -277,7 +277,6 @@ public class DAO implements IDAO {
             ResultSet result = statement.executeQuery();
 
 
-
             if (!result.next()) {
                 return null;
             }
