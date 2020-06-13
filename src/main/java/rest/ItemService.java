@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class ItemService {
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     public IItemDTO getItem(@PathParam("id") int id) throws SQLException {
 

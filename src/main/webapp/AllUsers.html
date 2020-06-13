@@ -86,7 +86,7 @@
 
     <script>function updateTextField() {
         $.get("http://localhost:8080/rest/user/"+document.getElementById("id").value, function(data){
-            document.getElementById("username").value = data.username;
+            document.getElementById("username").value = data.name;
             document.getElementById("role").value = data.role;
             document.getElementById("password").value = data.password;
             document.getElementById("userid").value = document.getElementById("id").value;
