@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class CharacterService {
 
 
-
     @POST
     @Path("approve/{id}/{approval}")
     public Response approveCharacter(@PathParam("id") int id, @PathParam("approval") boolean approval) throws SQLException {
@@ -33,9 +32,6 @@ public class CharacterService {
         return Response.status(200).entity(response).build();
 
     }
-
-
-
 
 
     @GET
@@ -68,12 +64,6 @@ public class CharacterService {
     @Path("{id}")
     public ICharacterDTO getCharacter(@PathParam("id") int id) throws SQLException {
 
-        /* Json Conversion
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String json = ow.writeValueAsString(object);
-
-         */
-        System.out.println("owow");
         IDAO dao = new DAO();
 
         return dao.getCharacter(id);

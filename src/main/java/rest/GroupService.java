@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class GroupService {
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     public IGroupDTO getGroup(@PathParam("id") int id) throws SQLException {
 

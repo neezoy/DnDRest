@@ -76,7 +76,7 @@
 
     <script>function updateTextField() {
         $.get("http://localhost:8080/rest/group/"+document.getElementById("id").value, function(data){
-            document.getElementById("groupname").value = data.groupname;
+            document.getElementById("groupname").value = data.name;
             document.getElementById("description").value = data.description;
             document.getElementById("groupid").value = document.getElementById("id").value;});
     } </script>
