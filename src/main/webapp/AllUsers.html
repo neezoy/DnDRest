@@ -81,7 +81,7 @@
 
     <form onload="updateTextField()" action="rest/user/search">
         <p>Character ID <input type="text" name="id" id="id" /></p>
-        <input type="button" onclick=updateTextField(); value="Search"/>
+        <input type="button" onclick=updateTextField();insertList(); value="Search"/>
     </form>
 
     <script>function updateTextField() {
@@ -111,7 +111,7 @@
         <script> function insertList(){
             $("#list tbody tr").remove();
             var characterList;
-            $.get("http://localhost:8080/rest/character/all", function (data) {
+            $.get("http://localhost:8080/rest/relation/usercharacters/"+document.getElementById("id").value, function (data) {
                 characterList = data;
                 console.log("insertList i users virker");
                 console.log(characterList);
