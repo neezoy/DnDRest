@@ -77,7 +77,7 @@
 
     <form onload="updateTextField()" action="rest/character/search">
         <p>Character ID <input type="text" name="id" id="id"/></p>
-        <input type="button" onclick=updateTextField(); value="Search"/>
+        <input type="button" onclick=updateTextField();insertList();insertList2(); value="Search"/>
     </form>
 
     <form onload="updateTextField()" action="rest/character/approved">
@@ -123,7 +123,7 @@
         <script> function insertList(){
             $("#list tbody tr").remove();
             var itemList;
-            $.get("http://localhost:8080/rest/relation/characteritems/"+document.getElementById("id").value, function (data) {
+            $.get("http://localhost:8080/rest/relation/characteritems/"+ document.getElementById("id").value, function (data) {
                 itemList = data;
                 console.log("wow");
                 console.log(itemList);
@@ -159,7 +159,7 @@
         var groupList;
         $.get("http://localhost:8080/rest/relation/charactergroups/"+document.getElementById("id").value, function (data) {
             itemList = data;
-            console.log("insertList i chars virker");
+            console.log("insertList2 i chars virker");
             console.log(groupList);
             for (i in groupList) {
                 var table = document.getElementById("list").getElementsByTagName("tbody");
