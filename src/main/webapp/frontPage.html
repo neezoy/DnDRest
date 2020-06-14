@@ -30,7 +30,7 @@
     </form>
 
     <script> function adminValidate(){
-        $.get("http://localhost:8080/rest/admin", function(data){
+        $.get("http://localhost:8080/rest/login/" + document.getElementById("admin").value, function(data){
         });
     } </script>
 
