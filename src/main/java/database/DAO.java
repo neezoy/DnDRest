@@ -433,7 +433,7 @@ public class DAO implements IDAO {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                itemids.add(result.getInt("CharacterID"));
+                itemids.add(result.getInt("ItemID"));
             }
 
         } catch (SQLException p) {
