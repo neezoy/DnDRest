@@ -19,7 +19,7 @@ public class CharacterService {
 
     @POST
     @Path("approve/{id}/{approval}")
-    public Response approveCharacter(@PathParam("id") int id, @PathParam("approval") boolean approval) throws SQLException {
+    public Response approveCharacter(@PathParam("id") int id, @PathParam("approval") int approval) throws SQLException {
 
         String response = "Successfully approved name: " +
                 id;
@@ -27,7 +27,14 @@ public class CharacterService {
         IDAO dao = new DAO();
 
         ICharacterDTO a = dao.getCharacter(id);
-        dao.approveCharacter(a, approval);
+
+        if (approval == 0){
+            dao.approveCharacter(a, false);
+        }
+        if (approval == 1){
+            dao.approveCharacter(a, true);
+        }
+
 
         //response is output in this case
         return Response.status(200).entity(response).build();
