@@ -21,6 +21,19 @@
         <button onclick="switchPage('AllItems.html');">Item</button>
         <button onclick="switchPage('AllGroups.html');">Group</button>
     </div>
+
+    <form onload="adminValidate()" action="/rest/admin" method="post" >
+        <input type="button" value="Admin" id="admin" onclick="adminValidate()"/>
+        <input type="button" value="Game Master" id="gm" onclick=""/>
+
+
+    </form>
+
+    <script> function adminValidate(){
+        $.get("http://localhost:8080/rest/login/" + document.getElementById("admin").value, function(data){
+        });
+    } </script>
+
 </div>
 <div>
     <img id = "Logo"  src="https://forum.imperium42.com/uploads/default/original/3X/0/1/01bde898809f6d4b7f5e8d49e93b86a8e9665bc8.jpeg">

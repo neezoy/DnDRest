@@ -68,9 +68,9 @@
         <p>Strength <input type="text" name="strength" id="strength"/></p>
         <p>Bonus Capacity <input type="text" name="bonus" id="bonus"/></p>
         <p>Status <input type="text" name="status" id="status"/></p>
-        <input type="submit" value="Create" onclick=selecter(1);/>
-        <input type="submit" value="Update" onclick=selecter(2);/>
-        <input type="submit" value="Delete" onclick=selecter(3);/>
+        <input type="submit" value="Create" onclick=selecter(1); />
+        <input type="submit" value="Update" onclick=selecter(2); />
+        <input type="submit" value="Delete" onclick=selecter(3); />
         <p><input type="hidden" value="" name="characterid" id="characterid"/></p>
         <p><input type="hidden" value="" name="selection" id="selection"/></p>
     </form>
@@ -80,14 +80,12 @@
         <input type="button" onclick=updateTextField();insertList();insertList2(); value="Search"/>
     </form>
 
-    <form onload="updateTextField()" action="rest/character/approved">
-        <input type="button" onclick=approved(); value="Approved"/>
+    <form onload="approved()" action="rest/character/approve/" method="post">
+        <input type="button" value="Approved" onclick=approved(); />
     </form>
 
     <script>function approved() {
-        $.put("http://localhost:8080/rest/character/" + document.getElementById("id").value, function (data) {
-            document.getElementById("status").value = data.status;
-            document.getElementById("characterid").value = document.getElementById("id").value;
+        $.get("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value + "/1" , function (data) {
         });
     } </script>
 
@@ -151,7 +149,7 @@
             console.log("insertList2 i chars virker");
             console.log(groupList);
             for (i in groupList) {
-                var table = document.getElementById("list").getElementsByTagName("tbody")[0];
+                var table = document.getElementById("list2").getElementsByTagName("tbody")[0];
                 var row1 = table.insertRow(0);
                 var cell1Name = row1.insertCell(0);
 
