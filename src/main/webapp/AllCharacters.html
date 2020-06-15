@@ -80,13 +80,16 @@
         <input type="button" onclick=updateTextField();insertList();insertList2(); value="Search"/>
     </form>
 
-    <form onload="approved()" action="rest/character/approve/" method="post">
-        <input type="button" value="Approved" onclick=approved(); />
+    <form
+        action="rest/character/approve/" method="post">
+        <input type="submit" value="Approved" onclick=approved(true); />
+        <p><input type="hidden" value="" name="charId" id="charId"/></p>
+        <p><input type="hidden" value="" name="approval" id="approval"/></p>
     </form>
 
-    <script>function approved() {
-        $.get("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value + "true" , function (data) {
-        });
+    <script>function approved(b) {
+        document.getElementById("approval").value  = b;
+
     } </script>
 
     <form onload="disapproved()" action="rest/character/approve/" method="post">
