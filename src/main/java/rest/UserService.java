@@ -32,6 +32,8 @@ public class UserService {
 
     }
 
+
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")

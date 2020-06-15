@@ -23,14 +23,14 @@
     </div>
 
     <form onload="adminValidate()" action="/rest/admin" method="post" >
-        <input type="button" value="Admin" id="admin" onclick="adminValidate()"/>
-        <input type="button" value="Game Master" id="gm" onclick=""/>
+        <input type="button" value="Admin" id="admin" onclick="adminValidate();"/>
+        <input type="button" value="Game Master" id="gm" onclick="adminValidate();"/>
 
 
     </form>
 
     <script> function adminValidate(){
-        $.get("http://localhost:8080/rest/login/" + document.getElementById("admin").value, function(data){
+        $.get("http://localhost:8080/rest/login/" + document.getElementById("id").value, function(data){
         });
     } </script>
 

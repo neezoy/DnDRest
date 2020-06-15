@@ -85,7 +85,16 @@
     </form>
 
     <script>function approved() {
-        $.get("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value + "/1" , function (data) {
+        $.get("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value + "true" , function (data) {
+        });
+    } </script>
+
+    <form onload="disapproved()" action="rest/character/approve/" method="post">
+        <input type="button" value="Disapproved" onclick=disapproved(); />
+    </form>
+
+    <script>function disapproved() {
+        $.get("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value + "false" , function (data) {
         });
     } </script>
 
