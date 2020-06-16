@@ -22,7 +22,7 @@ public class UserService {
         String response = "Successfully approved name: " +
                 id;
 
-        IDAO dao = new DAO();
+        IDAO dao = new DAO("administrator", "password");
 
         IUserDTO a = dao.getUser(id);
 

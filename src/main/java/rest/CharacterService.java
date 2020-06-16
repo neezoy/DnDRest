@@ -24,7 +24,7 @@ public class CharacterService {
         String response = "Successfully approved name: " +
                 id;
 
-        IDAO dao = new DAO();
+        IDAO dao = new DAO("administrator", "password");
 
         ICharacterDTO a = dao.getCharacter(id);
 
