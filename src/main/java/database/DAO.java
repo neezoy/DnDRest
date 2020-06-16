@@ -179,7 +179,7 @@ public class DAO implements IDAO {
     public void createItem(IItemDTO item) throws SQLException {
         try {
 
-            String query = "INSERT INTO Item (ItemName, Weight, IDescription) VALUES (?, ?, ?)";
+            String query = "INSERT INTO cdio.Item (ItemName, Weight, IDescription) VALUES (?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setString(1, item.getName());
@@ -198,7 +198,7 @@ public class DAO implements IDAO {
     public int getItemID(String itemname) throws SQLException {
         int ID;
         try {
-            String query = "SELECT ItemID FROM cdio.Item WHERE ItemName = ?;";
+            String query = "SELECT cdio.ItemID FROM cdio.Item WHERE ItemName = ?;";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, itemname);
             ResultSet result = statement.executeQuery();
