@@ -96,6 +96,10 @@
         });
     } </script>
 
+    <form>
+    <p>Character ID<input type="text" value="" id="charId" /></p>
+        <input type="button" value="Add Character" onclick=addCharacter(document.getElementById("charId"),document.getElementById("id"))>
+    </form>
 
     <script>function updateTextField() {
         $.get("http://localhost:8080/rest/character/" + document.getElementById("id").value, function (data) {
@@ -112,6 +116,15 @@
     } </script>
 
     <button onclick="insertTable()">Update table</button>
+
+    <script> function addCharacter(charId,userId) {
+        $.post("http://localhost:8080/rest/user/addcharacter/" + charId + "/" + userId, function (data) {
+
+        })
+
+    }
+
+    </script>
 
 
     <script> function insertList(){

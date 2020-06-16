@@ -77,7 +77,7 @@
         <script>insertTable();</script>
 
     <form onload="updateTextField()" action="rest/user/search">
-        <p>Character ID <input type="text" name="id" id="id" /></p>
+        <p>User ID <input type="text" name="id" id="id" /></p>
         <input type="button" onclick=updateTextField();insertList(); value="Search"/>
     </form>
 
@@ -147,7 +147,19 @@
 
         <button onclick="insertTable()">Update table</button>
 
+        <form>
+            <p>Character ID<input type="text" value="" id="charId" /></p>
+            <input type="button" value="Add Character" onclick=addCharacter(document.getElementById("charId").value,document.getElementById("id").value)>
+        </form>
 
+        <script> function addCharacter(charId,userId) {
+            $.post("http://localhost:8080/rest/user/addcharacter/" + charId + "/" + userId, function (data) {
+
+            })
+
+        }
+
+        </script>
 
 
     </div>
