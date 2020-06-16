@@ -46,6 +46,7 @@ public class ItemService {
         // 1 create
         // 2 update
         // 3 delete
+        System.out.println("Item save reached");
 
         IDAO dao = new DAO();
 
@@ -53,15 +54,18 @@ public class ItemService {
 
         switch (selection){
             case 1:
+                System.out.println("Create item reached");
                 dao.createItem(item);
                 break;
 
             case 2:
+                System.out.println("Update item reached");
                 item.setID(itemid);
                 dao.overwriteItem(item);
                 break;
 
             case 3:
+                System.out.println("Delete item reached");
                 dao.deleteItem(itemid);
                 break;
         }

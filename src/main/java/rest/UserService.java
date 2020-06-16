@@ -94,6 +94,7 @@ public class UserService {
         // 1 create
         // 2 update
         // 3 delete
+        System.out.println("User save reached");
 
         IDAO dao = new DAO();
 
@@ -101,15 +102,18 @@ public class UserService {
 
         switch (selection) {
             case 1:
+                System.out.println("Create user reached");
                 dao.createUser(user);
                 break;
 
             case 2:
+                System.out.println("Update user reached");
                 user.setID(userid);
                 dao.overwriteUser(user);
                 break;
 
             case 3:
+                System.out.println("Delete user reached");
                 dao.deleteUser(userid);
                 break;
         }

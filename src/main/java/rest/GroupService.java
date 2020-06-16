@@ -48,6 +48,7 @@ public class GroupService {
         // 1 create
         // 2 update
         // 3 delete
+        System.out.println("Group save reached");
 
         IDAO dao = new DAO();
 
@@ -55,15 +56,18 @@ public class GroupService {
 
         switch (selection) {
             case 1:
+                System.out.println("Create group reached");
                 dao.createGroup(group);
                 break;
 
             case 2:
+                System.out.println("Update group reached");
                 group.setID(groupid);
                 dao.overwriteGroup(group);
                 break;
 
             case 3:
+                System.out.println("Delete group reached");
                 dao.deleteGroup(groupid);
                 break;
         }
