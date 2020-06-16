@@ -1,9 +1,6 @@
 package rest;
 
-import dataTypes.GroupDTO;
-import dataTypes.IGroupDTO;
-import dataTypes.IItemDTO;
-import dataTypes.ItemDTO;
+import dataTypes.*;
 import database.DAO;
 import database.IDAO;
 
@@ -74,4 +71,26 @@ public class GroupService {
         return null;
 
     }
+
+    @POST
+    @Path("addcharacter/{characterid}/{group}")
+    public Response addCharacterToUser(@PathParam("characterid") int characterid, @PathParam("groupid") int groupid) throws SQLException {
+
+        String response = "Successfully added item name: " +
+                characterid + " to group: " + groupid;
+
+        IDAO dao = new DAO();
+        IGroupDTO g;
+        ICharacterDTO c;
+        g = dao.getGroup(groupid);
+        c = dao.getCharacter(characterid);
+        dao.addToGroup(c, g);
+
+        //response is output in this case
+        return Response.status(200).entity(response).build();
+
+
+    }
+
+
 }

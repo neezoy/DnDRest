@@ -128,10 +128,18 @@ public class UserService {
 
     @POST
     @Path("addcharacter/{characterid}/{userid}")
-    public Response addCharacterToUser(@PathParam("characterid") String characterid, @PathParam("userid") String userid) {
+    public Response addCharacterToUser(@PathParam("characterid") int characterid, @PathParam("userid") int userid) throws SQLException {
 
         String response = "Successfully added item name: " +
                 characterid + " to user: " + userid;
+
+        IDAO dao = new DAO();
+        IUserDTO u;
+        ICharacterDTO c;
+        u = dao.getUser(userid);
+        c = dao.getCharacter(characterid);
+        dao.addCharacter(u, c);
+
 
         //response is output in this case
         return Response.status(200).entity(response).build();

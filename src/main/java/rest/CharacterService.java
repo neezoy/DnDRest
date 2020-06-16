@@ -1,9 +1,6 @@
 package rest;
 
-import dataTypes.CharacterDTO;
-import dataTypes.ICharacterDTO;
-import dataTypes.IItemDTO;
-import dataTypes.IUserDTO;
+import dataTypes.*;
 import database.DAO;
 import database.IDAO;
 
@@ -139,10 +136,14 @@ public class CharacterService {
 
     @POST
     @Path("additem/{item}/{character}")
-    public Response addItemToCharacter(@PathParam("item") String item, @PathParam("character") String character) {
+    public Response addItemToCharacter(@PathParam("item") int item, @PathParam("character") int character) throws SQLException {
 
         String response = "Successfully added item name: " +
                 item + " to character: " + character;
+
+
+        IDAO dao = new DAO();
+        dao.addItem(character, item);
 
         //response is output in this case
         return Response.status(200).entity(response).build();
