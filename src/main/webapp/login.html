@@ -17,24 +17,19 @@
     <h2>D&D</h2>
     <div id = "headerContainer">
         <button id="admin" onclick="adminValidate();switchPage('frontPage.html');">Admin Login</button>
-        <button id="gm" onclick="gmValidate();switchPage('frontPage.html');">Game Master Login</button>
+        <button id="gm" onclick="switchPage('frontPage.html');">Game Master Login</button>
 
     </div>
 
-
+    <script> var role = 2</script>
 
 
     <script> function adminValidate(){
-        $.get("http://localhost:8080/rest/login/" +"admin", function(data){
-        });
+        role = 1;
 
     } </script>
 
-    <script> function gmValidate(){
-        $.get("http://localhost:8080/rest/login/" + "gm" , function(data){
 
-        });
-    } </script>
 
 </div>
 <div>

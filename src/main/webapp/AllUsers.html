@@ -81,23 +81,20 @@
         <input type="button" onclick=updateTextField();insertList(); value="Search"/>
     </form>
 
-    <form onload="approved()" action="rest/user/approve/{id}/{approval}/{role}" method="post">
-        <input type="button" value="Approved" onclick=approved(); />
+    <form action="rest/user/approve/{id}/{approval}/{role}" method="post">
+        <input type="button" value="Approved" onclick=approved(1); />
     </form>
 
-    <script>function approved() {
-        $.post("http://localhost:8080/rest/user/approve/" + document.getElementById("id").value + "/1" , function (data) {
+    <script>function approved(approval) {
+        $.post("http://localhost:8080/rest/user/approve/" + document.getElementById("id").value + "/" + approval + "/" + role , function (data) {
         });
     } </script>
 
-    <form onload="disapproved()" action="rest/user/approve/{id}/{approval}/{role}" method="post">
-        <input type="button" value="Disapproved" onclick=disapproved(); />
+    <form action="rest/user/approve/{id}/{approval}/{role}" method="post">
+        <input type="button" value="Disapproved" onclick=approved(0); />
     </form>
 
-    <script>function disapproved() {
-        $.post("http://localhost:8080/rest/user/approve/" + document.getElementById("id").value + "/0" , function (data) {
-        });
-    } </script>
+
 
     <script>function updateTextField() {
         $.get("http://localhost:8080/rest/user/"+document.getElementById("id").value, function(data){
@@ -165,7 +162,6 @@
         })
     }
     </script>
-
 
 
     </div>

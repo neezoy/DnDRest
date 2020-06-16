@@ -76,25 +76,18 @@
         <input type="button" onclick=updateTextField();insertList();insertList2(); value="Search"/>
     </form>
 
-    <form onload="approved()" action="rest/character/approve/{id}/{approval}/{role}" method="post">
-        <input type="button" value="Approved" onclick=approved(); />
+    <form action="rest/character/approve/{id}/{approval}/{role}" method="post">
+        <input type="button" value="Approved" onclick=approved(1); />
     </form>
 
-    <script>function approved() {
-        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/1" +"/0", function (data) {
+    <script>function approved(approval) {
+        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value + "/" + approval + "/" + role , function (data) {
         });
-
-
     } </script>
 
-    <form onload="disapproved()" action="rest/character/approve/{id}/{approval}/{role}" method="post">
-        <input type="button" value="Disapproved" onclick=disapproved(); />
+    <form action="rest/character/approve/{id}/{approval}/{role}" method="post">
+        <input type="button" value="Disapproved" onclick=approved(0); />
     </form>
-
-    <script>function disapproved() {
-        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/0", function (data) {
-        });
-    } </script>
 
 
     <script>function updateTextField() {
@@ -133,20 +126,20 @@
     </script>
 
     <form>
-    <p>Item ID<input type="text" value="" id="groupId" /></p>
+    <p>Group ID<input type="text" value="" id="groupId" /></p>
     <input type="button" value="Add Group" onclick=addGroup(document.getElementById("groupId").value,document.getElementById("id").value); />
     <input type="button" value="Remove Group" onclick=removeGroup(document.getElementById("groupId").value,document.getElementById("id").value); />
     </form>
 
     <script> function addGroup(groupId,charId) {
-        $.post("http://localhost:8080/rest/character/additem/" + groupId + "/" + charId, function (data) {
+        $.post("http://localhost:8080/rest/character/addgroup/" + groupId + "/" + charId, function (data) {
         })
     }
 
     </script>
 
     <script> function removeGroup(groupId,charId) {
-        $.post("http://localhost:8080/rest/character/removeitem/" + groupId + "/" + charId, function (data) {
+        $.post("http://localhost:8080/rest/character/removegroup/" + groupId + "/" + charId, function (data) {
         })
     }
     </script>
