@@ -25,13 +25,13 @@
 
 
     <script> function adminValidate(){
-        $.get("http://localhost:8080/rest/login/admin/", function(data){
-
+        $.get("http://localhost:8080/rest/login/" +"admin", function(data){
         });
+
     } </script>
 
     <script> function gmValidate(){
-        $.get("http://localhost:8080/rest/login/gm/" , function(data){
+        $.get("http://localhost:8080/rest/login/" + "gm" , function(data){
 
         });
     } </script>

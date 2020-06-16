@@ -82,7 +82,7 @@
         <input type="button" onclick=updateTextField();insertList(); value="Search"/>
     </form>
 
-    <form onload="approved()" action="rest/user/approve/" method="post">
+    <form onload="approved()" action="rest/user/approve/{id}/{approval}/{role}" method="post">
         <input type="button" value="Approved" onclick=approved(); />
     </form>
 
@@ -91,7 +91,7 @@
         });
     } </script>
 
-    <form onload="disapproved()" action="rest/user/approve/" method="post">
+    <form onload="disapproved()" action="rest/user/approve/{id}/{approval}/{role}" method="post">
         <input type="button" value="Disapproved" onclick=disapproved(); />
     </form>
 

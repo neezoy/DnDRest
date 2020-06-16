@@ -24,6 +24,17 @@ public class DAO implements IDAO {
             e.printStackTrace();
         }
     }
+    public DAO(String username, String password) {
+        String url = "jdbc:mysql://database-1.chwxwa8nyn1v.eu-central-1.rds.amazonaws.com:3306/cdio?characterEncoding=latin1";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            c = DriverManager.getConnection(url, username, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void closeConnection() throws Exception {

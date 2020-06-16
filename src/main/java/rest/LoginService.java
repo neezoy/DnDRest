@@ -22,7 +22,7 @@ public class LoginService {
 
         IDAO dao = new DAO();
         return dao.getUserFromName(name);
-        
+
     }
 
 }
