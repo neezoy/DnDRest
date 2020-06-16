@@ -98,6 +98,11 @@ public class UserService {
 
         IDAO dao = new DAO();
 
+       if(role != 0 & role != 1 & role != 2){
+           String s = "Invalid role";
+           return Response.status(200).entity(s).build();
+       }
+
         IUserDTO user = new UserDTO(username, password);
         user.setRole(role);
 
