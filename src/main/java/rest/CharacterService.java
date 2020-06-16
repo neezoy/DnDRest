@@ -152,7 +152,7 @@ public class CharacterService {
 
 
     @POST
-    @Path("addgroup/{group}/{characterid}")
+    @Path("addgroup/{groupid}/{characterid}")
     public Response addGroupToCharacter(@PathParam("groupid") int groupid, @PathParam("characterid") int characterid) throws SQLException {
 
         String response = "Successfully added item name: " +
