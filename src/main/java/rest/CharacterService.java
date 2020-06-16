@@ -151,16 +151,6 @@ public class CharacterService {
     }
 
 
-    @POST
-    @Path("addgroup/{group}/{character}")
-    public Response addGroupToCharacter(@PathParam("group") String group, @PathParam("character") String character) {
-
-        String response = "Successfully added group name: " +
-                character + " to character: " + character;
-
-        //response is output in this case
-        return Response.status(200).entity(response).build();
-    }
 
 
 }
