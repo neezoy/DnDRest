@@ -18,12 +18,10 @@
                 var cell1Id = row1.insertCell(0);
                 var cell2Name = row1.insertCell(1);
                 var cell3Location = row1.insertCell(2);
-                var cell4Status = row1.insertCell(3);
 
                 cell1Id.innerHTML = characterList[i].id;
                 cell2Name.innerHTML = characterList[i].name;
                 cell3Location.innerHTML = characterList[i].location;
-                cell4Status.innerHTML = characterList[i].status;
             }
         }).fail(function () {
             console.log("Fejl i insertTable i char");
@@ -51,7 +49,6 @@
         <th>Id</th>
         <th>Character name</th>
         <th>Location</th>
-        <th>Status</th>
 
         </thead>
         <tbody>
@@ -67,7 +64,6 @@
         <p>Location <input type="text" name="location" id="location"/></p>
         <p>Strength <input type="text" name="strength" id="strength"/></p>
         <p>Bonus Capacity <input type="text" name="bonus" id="bonus"/></p>
-        <p>Status <input type="text" name="status" id="status"/></p>
         <input type="submit" value="Create" onclick=selecter(1); />
         <input type="submit" value="Update" onclick=selecter(2); />
         <input type="submit" value="Delete" onclick=selecter(3); />
@@ -184,26 +180,7 @@
         </tbody>
     </table>
 
-    <script>function filterPending() {
-        var input, filter, table, tbody, i, txtValue;
-        input = "Status 0";
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        row1 = table.getElementsByTagName("row1");
 
-        for (i = 0; i < row1.length; i++) {
-            tbody = row1[i].getElementsByTagName("tbody")[3];
-            if (tbody) {
-                txtValue = tbody.textContent || tbody.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    row1[i].style.display = "";
-                } else {
-                    row1[i].style.display = "none";
-                }
-            }
-        }
-
-    }</script>
 
 
 </div>

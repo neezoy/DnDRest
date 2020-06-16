@@ -22,7 +22,7 @@
                 cell1Id.innerHTML = userList[i].id;
                 cell2Name.innerHTML = userList[i].name;
                 cell3Role.innerHTML= userList[i].role;
-                cell4Status.innerHTML = userList[i].status;
+
 
 
             }
@@ -52,7 +52,6 @@
                     <th>Id</th>
                     <th>User name</th>
                     <th>Role</th>
-                    <th>Status</th>
 
                 </thead>
                 <tbody>
@@ -146,26 +145,7 @@
 
         insertList();</script>
 
-        <script>function filterPending(){
-            var input, filter, table, tbody, i, txtValue;
-            input = "Status 0";
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            row1 = table.getElementsByTagName("row1");
 
-            for (i = 0; i < row1.length; i++) {
-                tbody = row1[i].getElementsByTagName("tbody")[3];
-                if (tbody) {
-                    txtValue = tbody.textContent || tbody.innerText;
-                    if  (txtValue.toUpperCase().indexOf(filter) >-1) {
-                        row1[i].style.display = "";
-                    } else {
-                        row1[i].style.display = "none";
-                    }
-                }
-            }
-
-        }</script>
 
 
     </div>
