@@ -20,7 +20,7 @@ public class CharacterService {
     @POST
     @Path("approve/{id}/{approval}/{role}")
     public Response approveCharacter(@PathParam("id") int id, @PathParam("approval") int approval, @PathParam("role") int role) throws SQLException {
-
+        System.out.println("Reached");
 
         String response = "Successfully approved name: " +
                 id;

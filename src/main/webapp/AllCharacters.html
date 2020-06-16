@@ -85,8 +85,10 @@
     </form>
 
     <script>function approved() {
-        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/1" +"/1", function (data) {
+        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/1" +"/0", function (data) {
         });
+
+
     } </script>
 
     <form onload="disapproved()" action="rest/character/approve/{id}/{approval}/{role}" method="post">
