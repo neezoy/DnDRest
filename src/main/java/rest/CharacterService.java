@@ -18,9 +18,11 @@ public class CharacterService {
 
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("approve/{id}/{approval}")
     public Response approveCharacter(@PathParam("id") int id, @PathParam("approval") int approval) throws SQLException {
-
+        System.out.println("enter approveCharacter");
         String response = "Successfully approved name: " +
                 id;
 
@@ -32,6 +34,7 @@ public class CharacterService {
             dao.approveCharacter(a, false);
         }
         if (approval == 1){
+            System.out.println("approval = 1");
             dao.approveCharacter(a, true);
         }
 
@@ -48,6 +51,7 @@ public class CharacterService {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("all")
     public ArrayList<ICharacterDTO> getAllCharacter() throws SQLException {
+        System.out.println("Enter getAllCharacter");
 
         System.out.println("Enter CharacterService, getAllCharacter)");
         try {
@@ -85,10 +89,6 @@ public class CharacterService {
     public Response postCharacter(@FormParam("charactername") String charactername, @FormParam("location") String location,
                                   @FormParam("strength") int strength, @FormParam("bonus") int bonus,
                                   @FormParam("characterid") int characterid, @FormParam("selection") int selection) throws SQLException {
-
-        // 1 create
-        // 2 update
-        // 3 delete
 
         IDAO dao = new DAO();
 
