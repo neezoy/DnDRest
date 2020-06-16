@@ -18,7 +18,6 @@
                 var cell1Id = row1.insertCell(0);
                 var cell2Name = row1.insertCell(1);
                 var cell3Location = row1.insertCell(2);
-                var cell4Status = row1.insertCell(3);
 
                 cell1Id.innerHTML = characterList[i].id;
                 cell2Name.innerHTML = characterList[i].name;
@@ -67,7 +66,6 @@
         <p>Location <input type="text" name="location" id="location"/></p>
         <p>Strength <input type="text" name="strength" id="strength"/></p>
         <p>Bonus Capacity <input type="text" name="bonus" id="bonus"/></p>
-        <p>Status <input type="text" name="status" id="status"/></p>
         <input type="submit" value="Create" onclick=selecter(1); />
         <input type="submit" value="Update" onclick=selecter(2); />
         <input type="submit" value="Delete" onclick=selecter(3); />
@@ -80,17 +78,13 @@
         <input type="button" onclick=updateTextField();insertList();insertList2(); value="Search"/>
     </form>
 
-    <form
-        action="rest/character/approve/" method="post">
-        <p>Character ID <input type="text" name="charId" id="charId"/></p>
-        <input type="submit" value="Approved"/>
-        <p><input type="hidden" name="characId" id="characId"/></p>
-        <p><input type="hidden" value="1" name="approval" id="approval"/></p>
+    <form onload="approved()" action="rest/character/approve/" method="post">
+        <input type="button" value="Disapproved" onclick=approved(); />
     </form>
 
-    <script>function approved(b) {
-        document.getElementById("approval").value  = b;
-
+    <script>function approved() {
+        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/1", function (data) {
+        });
     } </script>
 
     <form onload="disapproved()" action="rest/character/approve/" method="post">
@@ -98,7 +92,7 @@
     </form>
 
     <script>function disapproved() {
-        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/" + JSON.stringify(2) , function (data) {
+        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/0", function (data) {
         });
     } </script>
 
