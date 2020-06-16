@@ -11,6 +11,7 @@ public class CharacterDTO implements ICharacterDTO {
     private ArrayList<IItemDTO> items = new ArrayList<IItemDTO>();
     private ArrayList<IGroupDTO> groups = new ArrayList<IGroupDTO>();
     private ArrayList<ISessionDTO> sessions = new ArrayList<ISessionDTO>();
+    private int status;
 
     public CharacterDTO(){
     }

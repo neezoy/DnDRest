@@ -70,8 +70,6 @@ public class ItemService {
                 break;
         }
 
-
-
         //response is output in this case
         return null;
 

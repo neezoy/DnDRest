@@ -99,6 +99,7 @@ public class UserService {
         IDAO dao = new DAO();
 
         IUserDTO user = new UserDTO(username, password);
+        user.setRole(role);
 
         switch (selection) {
             case 1:
