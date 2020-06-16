@@ -134,8 +134,8 @@ public class UserService {
                 characterid + " to user: " + userid;
 
         IDAO dao = new DAO();
-        IUserDTO u;
-        ICharacterDTO c;
+        IUserDTO u = new UserDTO();
+        ICharacterDTO c = new CharacterDTO();
         u = dao.getUser(userid);
         c = dao.getCharacter(characterid);
         dao.addCharacter(u, c);
