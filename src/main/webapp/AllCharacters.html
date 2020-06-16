@@ -80,17 +80,13 @@
         <input type="button" onclick=updateTextField();insertList();insertList2(); value="Search"/>
     </form>
 
-    <form
-        action="rest/character/approve/" method="post">
-        <p>Character ID <input type="text" name="charId" id="charId"/></p>
-        <input type="submit" value="Approved"/>
-        <p><input type="hidden" name="characId" id="characId"/></p>
-        <p><input type="hidden" value="1" name="approval" id="approval"/></p>
+    <form onload="approved()" action="rest/character/approve/" method="post">
+        <input type="button" value="Approved" onclick=approved(); />
     </form>
 
-    <script>function approved(b) {
-        document.getElementById("approval").value  = b;
-
+    <script>function approved() {
+        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/1", function (data) {
+        });
     } </script>
 
     <form onload="disapproved()" action="rest/character/approve/" method="post">
@@ -98,7 +94,7 @@
     </form>
 
     <script>function disapproved() {
-        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/" + JSON.stringify(2) , function (data) {
+        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/0", function (data) {
         });
     } </script>
 

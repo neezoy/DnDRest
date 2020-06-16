@@ -1,13 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="DnDRest:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <properties id="maven-jee-properties">
-      <options>
-        <module>DnDRest</module>
-        <packaging>war</packaging>
-      </options>
-    </properties>
-    <root id="archive" name="dndREST-1.0-SNAPSHOT.war">
+    <output-path>$PROJECT_DIR$/out/artifacts/DnDRest_war</output-path>
+    <root id="archive" name="DnDRest_war.war">
       <element id="artifact" artifact-name="DnDRest:war exploded" />
     </root>
   </artifact>
