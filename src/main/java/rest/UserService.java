@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class UserService {
 
 
-
     @POST
     @Path("approve/{id}/{approval}/{role}")
     public Response approveUser(@PathParam("id") int id, @PathParam("approval") int approval, @PathParam("role") int role) throws SQLException {
@@ -25,7 +24,7 @@ public class UserService {
 
         IDAO dao;
 
-        switch (role){
+        switch (role) {
             case 0:
                 dao = new DAO();
                 break;
@@ -41,10 +40,10 @@ public class UserService {
 
         IUserDTO a = dao.getUser(id);
 
-        if (approval == 0){
+        if (approval == 0) {
             dao.approveUser(a, false);
         }
-        if (approval == 1){
+        if (approval == 1) {
             dao.approveUser(a, true);
         }
 
@@ -56,7 +55,6 @@ public class UserService {
         return Response.status(200).entity(response).build();
 
     }
-
 
 
     @GET
@@ -98,10 +96,10 @@ public class UserService {
 
         IDAO dao = new DAO();
 
-       if(role != 0 & role != 1 & role != 2){
-           String s = "Invalid role";
-           return Response.status(200).entity(s).build();
-       }
+        if (role != 0 & role != 1 & role != 2) {
+            String s = "Invalid role";
+            return Response.status(200).entity(s).build();
+        }
 
         IUserDTO user = new UserDTO(username, password);
         user.setRole(role);
@@ -139,5 +137,5 @@ public class UserService {
         return Response.status(200).entity(response).build();
 
 
-
+    }
 }
