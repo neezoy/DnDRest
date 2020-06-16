@@ -146,4 +146,21 @@ public class UserService {
 
 
     }
+
+    @POST
+    @Path("removecharacter/{characterid}")
+    public Response removeCharacterToUser(@PathParam("characterid") int characterid) throws SQLException {
+
+        String response = "Successfully deleted character: " +
+                characterid;
+
+        IDAO dao = new DAO();
+        dao.removeCharacter(characterid);
+
+
+        //response is output in this case
+        return Response.status(200).entity(response).build();
+
+
+    }
 }
