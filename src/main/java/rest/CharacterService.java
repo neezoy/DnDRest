@@ -18,13 +18,31 @@ public class CharacterService {
 
 
     @POST
-    @Path("approve/{id}/{approval}")
-    public Response approveCharacter(@PathParam("id") int id, @PathParam("approval") int approval) throws SQLException {
+    @Path("approve/{id}/{approval}/{role}")
+    public Response approveCharacter(@PathParam("id") int id, @PathParam("approval") int approval, @PathParam("role") int role) throws SQLException {
+
 
         String response = "Successfully approved name: " +
                 id;
 
-        IDAO dao = new DAO("gamemaster", "password");
+        //role 0 = master
+        //role 1 = admin
+        //role 2 = gamemaster
+        IDAO dao;
+
+        switch (role){
+            case 0:
+                dao = new DAO();
+                break;
+            case 1:
+                dao = new DAO("administrator", "password");
+                break;
+            case 2:
+                dao = new DAO("gamemaster", "password");
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + role);
+        }
 
         ICharacterDTO a = dao.getCharacter(id);
 

@@ -16,13 +16,28 @@ public class UserService {
 
 
     @POST
-    @Path("approve/{id}/{approval}")
-    public Response approveUser(@PathParam("id") int id, @PathParam("approval") int approval) throws SQLException {
+    @Path("approve/{id}/{approval}/{role}")
+    public Response approveUser(@PathParam("id") int id, @PathParam("approval") int approval, @PathParam("role") int role) throws SQLException {
 
-        String response = "Successfully approved name: " +
-                id;
+        //role 0 = master
+        //role 1 = admin
+        //role 2 = gamemaster
 
-        IDAO dao = new DAO("administrator", "password");
+        IDAO dao;
+
+        switch (role){
+            case 0:
+                dao = new DAO();
+                break;
+            case 1:
+                dao = new DAO("administrator", "password");
+                break;
+            case 2:
+                dao = new DAO("gamemaster", "password");
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + role);
+        }
 
         IUserDTO a = dao.getUser(id);
 
@@ -34,7 +49,8 @@ public class UserService {
         }
 
 
-
+        String response = "Successfully approved name: " +
+                id;
 
         //response is output in this case
         return Response.status(200).entity(response).build();
