@@ -3,6 +3,7 @@ package rest;
 import dataTypes.CharacterDTO;
 import dataTypes.ICharacterDTO;
 import dataTypes.IItemDTO;
+import dataTypes.IUserDTO;
 import database.DAO;
 import database.IDAO;
 
@@ -39,6 +40,8 @@ public class CharacterService {
         return Response.status(200).entity(response).build();
 
     }
+
+
 
 
     @GET
