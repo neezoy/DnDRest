@@ -82,9 +82,10 @@
 
     <form
         action="rest/character/approve/" method="post">
-        <input type="submit" value="Approved" onclick=approved(true); />
-        <p><input type="hidden" value="" name="charId" id="charId"/></p>
-        <p><input type="hidden" value="" name="approval" id="approval"/></p>
+        <p>Character ID <input type="text" name="charId" id="charId"/></p>
+        <input type="submit" value="Approved"/>
+        <p><input type="hidden" name="characId" id="characId"/></p>
+        <p><input type="hidden" value="1" name="approval" id="approval"/></p>
     </form>
 
     <script>function approved(b) {
@@ -97,7 +98,7 @@
     </form>
 
     <script>function disapproved() {
-        $.get("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value + "false" , function (data) {
+        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/" + JSON.stringify(2) , function (data) {
         });
     } </script>
 
