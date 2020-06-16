@@ -96,10 +96,6 @@
         });
     } </script>
 
-    <form>
-    <p>Character ID<input type="text" value="" id="charId" /></p>
-        <input type="button" value="Add Character" onclick=addCharacter(document.getElementById("charId"),document.getElementById("id"))>
-    </form>
 
     <script>function updateTextField() {
         $.get("http://localhost:8080/rest/character/" + document.getElementById("id").value, function (data) {
@@ -117,13 +113,42 @@
 
     <button onclick="insertTable()">Update table</button>
 
-    <script> function addCharacter(charId,userId) {
-        $.post("http://localhost:8080/rest/user/addcharacter/" + charId + "/" + userId, function (data) {
+    <form>
+        <p>Item ID<input type="text" value="" id="itemId" /></p>
+        <input type="button" value="Add Item" onclick=addItem(document.getElementById("itemId").value,document.getElementById("id").value); />
+        <input type="button" value="Remove Item" onclick=removeItem(document.getElementById("itemId").value,document.getElementById("id").value); />
+    </form>
 
+    <script> function addItem(itemId,charId) {
+        $.post("http://localhost:8080/rest/character/additem/" + itemId + "/" + charId, function (data) {
         })
-
     }
 
+    </script>
+
+    <script> function removeItem(itemId,charId) {
+        $.post("http://localhost:8080/rest/character/removeitem/" + itemId + "/" + charId, function (data) {
+        })
+    }
+    </script>
+
+    <form>
+    <p>Item ID<input type="text" value="" id="groupId" /></p>
+    <input type="button" value="Add Group" onclick=addGroup(document.getElementById("groupId").value,document.getElementById("id").value); />
+    <input type="button" value="Remove Group" onclick=removeGroup(document.getElementById("groupId").value,document.getElementById("id").value); />
+    </form>
+
+    <script> function addGroup(groupId,charId) {
+        $.post("http://localhost:8080/rest/character/additem/" + groupId + "/" + charId, function (data) {
+        })
+    }
+
+    </script>
+
+    <script> function removeGroup(groupId,charId) {
+        $.post("http://localhost:8080/rest/character/removeitem/" + groupId + "/" + charId, function (data) {
+        })
+    }
     </script>
 
 

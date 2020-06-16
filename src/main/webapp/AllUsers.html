@@ -149,17 +149,23 @@
 
         <form>
             <p>Character ID<input type="text" value="" id="charId" /></p>
-            <input type="button" value="Add Character" onclick=addCharacter(document.getElementById("charId").value,document.getElementById("id").value)>
+            <input type="button" value="Add Character" onclick=addCharacter(document.getElementById("charId").value,document.getElementById("id").value); />
+            <input type="button" value="Remove Character" onclick=removeCharacter(document.getElementById("charId").value); />
         </form>
 
         <script> function addCharacter(charId,userId) {
-            $.post("http://localhost:8080/rest/user/addcharacter/" + charId + "/" + userId, function (data) {
+        $.post("http://localhost:8080/rest/user/addcharacter/" + charId + "/" + userId, function (data) {
+        })
+    }
 
-            })
+    </script>
 
-        }
+    <script> function removeCharacter(charId) {
+        $.post("http://localhost:8080/rest/user/removecharacter/" + charId, function (data) {
+        })
+    }
+    </script>
 
-        </script>
 
 
     </div>
