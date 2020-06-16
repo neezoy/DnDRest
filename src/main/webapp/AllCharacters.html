@@ -80,16 +80,16 @@
         <input type="button" onclick=updateTextField();insertList();insertList2(); value="Search"/>
     </form>
 
-    <form onload="approved()" action="rest/character/approve/" method="post">
+    <form onload="approved()" action="rest/character/approve/{id}/{approval}/{role}" method="post">
         <input type="button" value="Approved" onclick=approved(); />
     </form>
 
     <script>function approved() {
-        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/1", function (data) {
+        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value +"/1" +"/1", function (data) {
         });
     } </script>
 
-    <form onload="disapproved()" action="rest/character/approve/" method="post">
+    <form onload="disapproved()" action="rest/character/approve/{id}/{approval}/{role}" method="post">
         <input type="button" value="Disapproved" onclick=disapproved(); />
     </form>
 
