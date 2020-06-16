@@ -130,7 +130,7 @@ public class UserService {
     @Path("addcharacter/{characterid}/{userid}")
     public Response addCharacterToUser(@PathParam("characterid") int characterid, @PathParam("userid") int userid) throws SQLException {
 
-        String response = "Successfully added item name: " +
+        String response = "Successfully added character: " +
                 characterid + " to user: " + userid;
 
         IDAO dao = new DAO();
