@@ -1,9 +1,6 @@
 package rest;
 
-import dataTypes.CharacterDTO;
-import dataTypes.ICharacterDTO;
-import dataTypes.IItemDTO;
-import dataTypes.IUserDTO;
+import dataTypes.*;
 import database.DAO;
 import database.IDAO;
 
@@ -139,10 +136,14 @@ public class CharacterService {
 
     @POST
     @Path("additem/{item}/{character}")
-    public Response addItemToCharacter(@PathParam("item") String item, @PathParam("character") String character) {
+    public Response addItemToCharacter(@PathParam("item") int item, @PathParam("character") int character) throws SQLException {
 
         String response = "Successfully added item name: " +
                 item + " to character: " + character;
+
+
+        IDAO dao = new DAO();
+        dao.addItem(character, item);
 
         //response is output in this case
         return Response.status(200).entity(response).build();
@@ -151,15 +152,26 @@ public class CharacterService {
 
 
     @POST
-    @Path("addgroup/{group}/{character}")
-    public Response addGroupToCharacter(@PathParam("group") String group, @PathParam("character") String character) {
+    @Path("addgroup/{groupid}/{characterid}")
+    public Response addGroupToCharacter(@PathParam("groupid") int groupid, @PathParam("characterid") int characterid) throws SQLException {
 
-        String response = "Successfully added group name: " +
-                character + " to character: " + character;
+        String response = "Successfully added item name: " +
+                characterid + " to group: " + groupid;
+
+        IDAO dao = new DAO();
+        IGroupDTO g;
+        ICharacterDTO c;
+        g = dao.getGroup(groupid);
+        c = dao.getCharacter(characterid);
+        dao.addToGroup(c, g);
 
         //response is output in this case
         return Response.status(200).entity(response).build();
+
+
     }
+
+
 
 
 }
