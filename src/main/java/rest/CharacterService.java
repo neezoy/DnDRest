@@ -151,6 +151,27 @@ public class CharacterService {
     }
 
 
+    @POST
+    @Path("addGroup/{group}/{characterid}")
+    public Response addGroupToCharacter(@PathParam("groupid") int groupid, @PathParam("characterid") int characterid) throws SQLException {
+
+        String response = "Successfully added item name: " +
+                characterid + " to group: " + groupid;
+
+        IDAO dao = new DAO();
+        IGroupDTO g;
+        ICharacterDTO c;
+        g = dao.getGroup(groupid);
+        c = dao.getCharacter(characterid);
+        dao.addToGroup(c, g);
+
+        //response is output in this case
+        return Response.status(200).entity(response).build();
+
+
+    }
+
+
 
 
 }
