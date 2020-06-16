@@ -172,6 +172,40 @@ public class CharacterService {
     }
 
 
+    @POST
+    @Path("removeitem/{item}/{character}")
+    public Response removeItemToCharacter(@PathParam("item") int item, @PathParam("character") int character) throws SQLException {
+
+        String response = "Successfully removed item name: " +
+                item + " to character: " + character;
+
+
+        IDAO dao = new DAO();
+        dao.removeItem(character, item);
+
+        //response is output in this case
+        return Response.status(200).entity(response).build();
+
+    }
+
+
+    @POST
+    @Path("removegroup/{groupid}/{characterid}")
+    public Response deleteGroupToCharacter(@PathParam("groupid") int groupid, @PathParam("characterid") int characterid) throws SQLException {
+
+        String response = "Successfully removed character : " +
+                characterid + " from group: " + groupid;
+
+        IDAO dao = new DAO();
+        dao.removeFromGroup(characterid, groupid);
+
+        //response is output in this case
+        return Response.status(200).entity(response).build();
+
+
+    }
+
+
 
 
 }
