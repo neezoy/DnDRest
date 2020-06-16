@@ -17,7 +17,7 @@ public class UserService {
 
     @POST
     @Path("approve/{id}/{approval}")
-    public Response approveUser(@PathParam("id") int id, @PathParam("approval") boolean approval) throws SQLException {
+    public Response approveUser(@PathParam("id") int id, @PathParam("approval") int approval) throws SQLException {
 
         String response = "Successfully approved name: " +
                 id;
@@ -25,7 +25,16 @@ public class UserService {
         IDAO dao = new DAO();
 
         IUserDTO a = dao.getUser(id);
-        dao.approveUser(a, approval);
+
+        if (approval == 0){
+            dao.approveUser(a, false);
+        }
+        if (approval == 1){
+            dao.approveUser(a, true);
+        }
+
+
+
 
         //response is output in this case
         return Response.status(200).entity(response).build();
