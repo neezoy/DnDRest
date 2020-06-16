@@ -128,5 +128,16 @@ public class UserService {
     }
 
 
+    @POST
+    @Path("addcharacter/{characterid}/{userid}")
+    public Response addCharacterToUser(@PathParam("characterid") String characterid, @PathParam("userid") String userid) {
+
+        String response = "Successfully added item name: " +
+                characterid + " to user: " + userid;
+
+        //response is output in this case
+        return Response.status(200).entity(response).build();
+
+
 
 }
