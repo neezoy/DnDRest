@@ -9,7 +9,7 @@
     <script> function insertTable() {
         $("#myTable tbody tr").remove();
         var itemList;
-        $.get("http://localhost:8080/rest/item/all", function (data) {
+        $.get("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/item/all", function (data) {
             itemList = data;
             console.log("insertTable virker i items");
             for (i in itemList) {
@@ -76,7 +76,7 @@
     </form>
 
     <script>function updateTextField() {
-        $.get("http://localhost:8080/rest/item/" + document.getElementById("id").value, function (data) {
+        $.get("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/item/" + document.getElementById("id").value, function (data) {
             document.getElementById("itemname").value = data.name;
             document.getElementById("weight").value = data.weight;
             document.getElementById("description").value = data.description;

@@ -8,7 +8,7 @@
     <script> function insertTable(){
         $("#myTable tbody tr").remove();
         var userList;
-        $.get("http://localhost:8080/rest/user/all", function(data){
+        $.get("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/user/all", function(data){
             userList = data;
             console.log("insertTable virker i users");
             console.log(userList);
@@ -86,7 +86,7 @@
     </form>
 
     <script>function approved(approval) {
-        $.post("http://localhost:8080/rest/user/approve/" + document.getElementById("id").value + "/" + approval + "/" + role , function (data) {
+        $.post("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/user/approve/" + document.getElementById("id").value + "/" + approval + "/" + role , function (data) {
         });
     } </script>
 
@@ -97,7 +97,7 @@
 
 
     <script>function updateTextField() {
-        $.get("http://localhost:8080/rest/user/"+document.getElementById("id").value, function(data){
+        $.get("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/user/"+document.getElementById("id").value, function(data){
             document.getElementById("username").value = data.name;
             document.getElementById("role").value = data.role;
             document.getElementById("password").value = data.password;
@@ -123,7 +123,7 @@
         <script> function insertList(){
             $("#list tbody tr").remove();
             var characterList;
-            $.get("http://localhost:8080/rest/relation/usercharacters/"+document.getElementById("id").value, function (data) {
+            $.get("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/relation/usercharacters/"+document.getElementById("id").value, function (data) {
                 characterList = data;
                 console.log("insertList i users virker");
                 console.log(characterList);
@@ -151,14 +151,14 @@
         </form>
 
         <script> function addCharacter(charId,userId) {
-        $.post("http://localhost:8080/rest/user/addcharacter/" + charId + "/" + userId, function (data) {
+        $.post("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/user/addcharacter/" + charId + "/" + userId, function (data) {
         })
     }
 
     </script>
 
     <script> function removeCharacter(charId) {
-        $.post("http://localhost:8080/rest/user/removecharacter/" + charId, function (data) {
+        $.post("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/user/removecharacter/" + charId, function (data) {
         })
     }
     </script>
