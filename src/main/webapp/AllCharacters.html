@@ -9,7 +9,7 @@
     <script> function insertTable() {
         $("#myTable tbody tr").remove();
         var characterList;
-        $.get("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/character/all", function (data) {
+        $.get("http://localhost:8080/rest/character/all", function (data) {
             characterList = data;
             console.log("insertTable virker i chars");
             for (i in characterList) {
@@ -81,7 +81,7 @@
     </form>
 
     <script>function approved(approval) {
-        $.post("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/character/approve/" + document.getElementById("id").value + "/" + approval + "/" + role , function (data) {
+        $.post("http://localhost:8080/rest/character/approve/" + document.getElementById("id").value + "/" + approval + "/" + role , function (data) {
         });
     } </script>
 
@@ -91,7 +91,7 @@
 
 
     <script>function updateTextField() {
-        $.get("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/character/" + document.getElementById("id").value, function (data) {
+        $.get("http://localhost:8080/rest/character/" + document.getElementById("id").value, function (data) {
             document.getElementById("charactername").value = data.name;
             document.getElementById("location").value = data.location;
             document.getElementById("strength").value = data.strength;
@@ -113,14 +113,14 @@
     </form>
 
     <script> function addItem(itemId,charId) {
-        $.post("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/character/additem/" + itemId + "/" + charId, function (data) {
+        $.post("http://localhost:8080/rest/character/additem/" + itemId + "/" + charId, function (data) {
         })
     }
 
     </script>
 
     <script> function removeItem(itemId,charId) {
-        $.post("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/character/removeitem/" + itemId + "/" + charId, function (data) {
+        $.post("http://localhost:8080/rest/character/removeitem/" + itemId + "/" + charId, function (data) {
         })
     }
     </script>
@@ -132,14 +132,14 @@
     </form>
 
     <script> function addGroup(groupId,charId) {
-        $.post("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/character/addgroup/" + groupId + "/" + charId, function (data) {
+        $.post("http://localhost:8080/rest/character/addgroup/" + groupId + "/" + charId, function (data) {
         })
     }
 
     </script>
 
     <script> function removeGroup(groupId,charId) {
-        $.post("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/character/removegroup/" + groupId + "/" + charId, function (data) {
+        $.post("http://localhost:8080/rest/character/removegroup/" + groupId + "/" + charId, function (data) {
         })
     }
     </script>
@@ -148,7 +148,7 @@
     <script> function insertList(){
         $("#list tbody tr").remove();
         var itemList;
-        $.get("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/relation/characteritems/"+document.getElementById("id").value, function (data) {
+        $.get("http://localhost:8080/rest/relation/characteritems/"+document.getElementById("id").value, function (data) {
             itemList = data;
             console.log("insertList i chars virker");
             console.log(itemList);
@@ -182,7 +182,7 @@
     <script> function insertList2() {
         $("#list tbody tr").remove();
         var groupList;
-        $.get("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/relation/charactergroups/"+document.getElementById("id").value, function (data) {
+        $.get("http://localhost:8080/rest/relation/charactergroups/"+document.getElementById("id").value, function (data) {
             groupList = data;
             console.log("insertList2 i chars virker");
             console.log(groupList);

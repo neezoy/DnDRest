@@ -4,33 +4,7 @@
 
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="Master.css">
-
-    <script> function insertTable(){
-        $("#myTable tbody tr").remove();
-        var userList;
-        $.get("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/user/all", function(data){
-            userList = data;
-            console.log("insertTable virker i users");
-            console.log(userList);
-            for ( i in userList) {
-                var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
-                var row1 = table.insertRow(0);
-                var cell1Id = row1.insertCell(0);
-                var cell2Name = row1.insertCell(1);
-                var cell3Role = row1.insertCell(2);
-
-                cell1Id.innerHTML = userList[i].id;
-                cell2Name.innerHTML = userList[i].name;
-                cell3Role.innerHTML= userList[i].role;
-
-
-
-            }
-        }).fail(function () {
-            console.log("Fejl i insertTable i users");
-        });
-
-    }</script>
+    <script src = "/AllUsers.js"></script>
 
 </head>
 <body onload="insertTable();">
@@ -46,18 +20,18 @@
 
     <br>
 
-    <div class="innerBody">
-            <table id="myTable">
-                <thead>
-                    <th>Id</th>
-                    <th>User name</th>
-                    <th>Role</th>
+<div class="innerBody">
+        <table id="myTable">
+            <thead>
+                <th>Id</th>
+                <th>User name</th>
+                <th>Role</th>
 
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
 
-                </tbody>
-            </table>
+            </tbody>
+        </table>
 
 
 
@@ -74,7 +48,7 @@
     </form>
 
 
-        <script>insertTable();</script>
+    <script>insertTable();</script>
 
     <form onload="updateTextField()" action="rest/user/search">
         <p>User ID <input type="text" name="id" id="id" /></p>
@@ -85,83 +59,30 @@
         <input type="button" value="Approved" onclick=approved(1); />
     </form>
 
-    <script>function approved(approval) {
-        $.post("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/user/approve/" + document.getElementById("id").value + "/" + approval + "/" + role , function (data) {
-        });
-    } </script>
 
     <form action="rest/user/approve/{id}/{approval}/{role}" method="post">
         <input type="button" value="Disapproved" onclick=approved(0); />
     </form>
 
 
+    <table id="list">
+        <thead>
+        <th>User's Characters</th>
 
-    <script>function updateTextField() {
-        $.get("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/user/"+document.getElementById("id").value, function(data){
-            document.getElementById("username").value = data.name;
-            document.getElementById("role").value = data.role;
-            document.getElementById("password").value = data.password;
-            document.getElementById("userid").value = document.getElementById("id").value;
-            });
-    } </script>
+        </thead>
+        <tbody>
 
-    <script>function selecter(x) {
-        document.getElementById("selection").value = x;
-    } </script>
+        </tbody>
+    </table>
 
-        <table id="list">
-            <thead>
-            <th>User's Characters</th>
+    <button onclick="insertTable()">Update table</button>
 
-            </thead>
-            <tbody>
+    <form>
+        <p>Character ID<input type="text" value="" id="charId" /></p>
+        <input type="button" value="Add Character" onclick=addCharacter(document.getElementById("charId").value,document.getElementById("id").value); />
+        <input type="button" value="Remove Character" onclick=removeCharacter(document.getElementById("charId").value); />
+    </form>
 
-            </tbody>
-        </table>
-
-
-        <script> function insertList(){
-            $("#list tbody tr").remove();
-            var characterList;
-            $.get("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/relation/usercharacters/"+document.getElementById("id").value, function (data) {
-                characterList = data;
-                console.log("insertList i users virker");
-                console.log(characterList);
-                for (i in characterList) {
-                    var table = document.getElementById("list").getElementsByTagName("tbody")[0];
-                    var row1 = table.insertRow(0);
-                    var cell1Name = row1.insertCell(0);
-
-                    cell1Name.innerHTML = characterList[i].name;
-                }
-
-            }).fail(function () {
-                console.log("Fejl i insertList på user");
-            });
-        }
-
-        insertList();</script>
-
-        <button onclick="insertTable()">Update table</button>
-
-        <form>
-            <p>Character ID<input type="text" value="" id="charId" /></p>
-            <input type="button" value="Add Character" onclick=addCharacter(document.getElementById("charId").value,document.getElementById("id").value); />
-            <input type="button" value="Remove Character" onclick=removeCharacter(document.getElementById("charId").value); />
-        </form>
-
-        <script> function addCharacter(charId,userId) {
-        $.post("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/user/addcharacter/" + charId + "/" + userId, function (data) {
-        })
-    }
-
-    </script>
-
-    <script> function removeCharacter(charId) {
-        $.post("http://ec2-3-124-2-29.eu-central-1.compute.amazonaws.com:8080/dndREST/rest/user/removecharacter/" + charId, function (data) {
-        })
-    }
-    </script>
 
 
     </div>
